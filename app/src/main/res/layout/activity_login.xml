@@ -8,17 +8,6 @@
     android:background="#3456"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="231dp"
-        android:layout_height="209dp"
-        android:contentDescription="@string/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,8 +28,8 @@
         android:orientation="vertical"
         android:padding="24dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="218dp">
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="430dp">
 
         <TextView
             android:id="@+id/loginText"
@@ -103,8 +92,19 @@
         android:textColor="@color/deepblue"
         android:textSize="14sp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="582dp" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="807dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="231dp"
+        android:layout_height="209dp"
+        android:contentDescription="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/icon"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="190dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
