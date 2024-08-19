@@ -2,4 +2,8 @@
     <string name="app_name">SecondChanceMarket</string>
     <string name="login">Login</string>
     <string name="forgot">Forgot password</string>
+    <string name="description">Defined later</string>
+    <string name="sign_up">Not yet registered? Sign up now</string>
+    <string name="password_hint">Password</string>
+    <string name="username_hint">Username</string>
 </resources>
