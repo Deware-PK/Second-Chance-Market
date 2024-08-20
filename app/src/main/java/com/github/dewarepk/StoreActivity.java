@@ -1,6 +1,9 @@
 package com.github.dewarepk;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +23,17 @@ public class StoreActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPreferences.edit();
+
+        Button logout_button = findViewById(R.id.logout_button);
+        logout_button.setOnClickListener(view -> {
+            editor.remove("isLoggedIn");
+            editor.apply();
+            this.startActivity(new Intent(this, LoginActivity.class));
+            this.finish();
+        });
+
     }
 }
