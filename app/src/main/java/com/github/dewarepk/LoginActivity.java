@@ -1,6 +1,7 @@
 package com.github.dewarepk;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,19 +24,32 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        Button loginButton = findViewById(R.id.loginButton);
+        Intent intent = new Intent(this, StoreActivity.class);
+        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPreferences.edit();
+        boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
 
-        loginButton.setOnClickListener(view -> {
-            if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
-                Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, StoreActivity.class);
-                this.startActivity(intent);
-                this.finish();
-            }else {
-                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (!isLoggedIn) {
+            username = this.findViewById(R.id.username);
+            password = this.findViewById(R.id.password);
+            Button loginButton = this.findViewById(R.id.loginButton);
+
+            loginButton.setOnClickListener(view -> {
+                if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
+                    Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+                    this.startActivity(intent);
+                    this.finish();
+                }else {
+                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            this.startActivity(intent);
+            this.finish();
+        }
+
     }
 }
