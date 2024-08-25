@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="#3456"
     tools:context=".LoginActivity">
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:background="@drawable/stroke_text"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         tools:ignore="MissingConstraints"
@@ -21,27 +23,44 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:padding="8dp"
+        android:text="Not yet registered? Sign Up"
+        android:textColor="@color/deepblue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.147"
+        tools:ignore="MissingConstraints" />
+
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="377dp"
-        android:layout_height="377dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="400dp"
+        android:layout_height="365dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/stroke_text"
-        android:backgroundTint="@color/bluemain"
+        android:backgroundTint="@color/white"
         android:orientation="vertical"
         android:padding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="Sign in"
             android:textAlignment="center"
             android:textColor="@color/deepblue"
             android:textSize="36sp"
@@ -52,98 +71,63 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
-            android:autofillHints=""
             android:background="@drawable/stroke_text"
-            android:drawableStart="@drawable/baseline_person_24"
+            android:drawableLeft="@drawable/baseline_person_24"
             android:drawablePadding="8dp"
-            android:hint="@string/username_hint"
-            android:inputType="text"
+            android:hint="Username"
             android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:autofillHints=""
             android:background="@drawable/stroke_text"
-            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawableLeft="@drawable/baseline_lock_24"
             android:drawablePadding="8dp"
-            android:hint="@string/password_hint"
+            android:hint="Password"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/cardview_dark_background" />
-
+            android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/forgot"
+            android:id="@+id/signupRedirectText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/password"
-            android:text="                                                              Forgot pssword?"
-            android:layout_margin="5dp"
-            android:textColor="@color/deepblue" />
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:padding="8dp"
+            android:text="Forgot password?"
+            android:textColor="@color/deepblue"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/purple"
-            android:text="@string/login"
+            android:text="Login"
             android:textSize="18sp"
             app:cornerRadius="20dp" />
+
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/signupText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:padding="8dp"
-        android:text="@string/sign_up"
-        android:textAlignment="center"
-        android:textColor="@color/deepblue"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="293dp"
-        android:layout_height="276dp"
-        android:contentDescription="@string/description"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.417"
-        app:srcCompat="@drawable/icon"
-        tools:ignore="MissingConstraints" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
