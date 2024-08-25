@@ -24,7 +24,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="377dp"
-        android:layout_height="349dp"
+        android:layout_height="377dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/stroke_text"
         android:backgroundTint="@color/bluemain"
@@ -77,6 +77,16 @@
             android:textColor="@color/black"
             android:textColorHighlight="@color/cardview_dark_background" />
 
+
+        <TextView
+            android:id="@+id/forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:text="                                                              Forgot pssword?"
+            android:layout_margin="5dp"
+            android:textColor="@color/deepblue" />
+
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
@@ -118,6 +128,20 @@
         app:layout_constraintVertical_bias="0.417"
         app:srcCompat="@drawable/icon"
         tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
