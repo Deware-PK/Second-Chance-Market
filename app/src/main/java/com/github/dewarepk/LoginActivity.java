@@ -29,9 +29,9 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
 
         if (!isLoggedIn) {
-            username = this.findViewById(R.id.username);
-            password = this.findViewById(R.id.password);
-            Button loginButton = this.findViewById(R.id.loginButton);
+            username = this.findViewById(R.id.usernameBtn);
+            password = this.findViewById(R.id.passwordBtn);
+            Button loginButton = this.findViewById(R.id.signInBtn);
 
             loginButton.setOnClickListener(view -> {
                 if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
