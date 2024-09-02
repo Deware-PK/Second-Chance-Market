@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             eMail = this.findViewById(R.id.emailBtn);
             password = this.findViewById(R.id.passwordBtn);
             Button loginButton = this.findViewById(R.id.signInBtn);
-            TextView textView = this.findViewById(R.id.signUp_Btn);
+            TextView textView = this.findViewById(R.id.signUpBtn);
 
             textView.setOnClickListener(view -> {
                 Toast.makeText(this, "Madame", Toast.LENGTH_SHORT).show();
