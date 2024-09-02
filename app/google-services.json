@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334576143807",
+    "project_id": "secondchancemarket-85097",
+    "storage_bucket": "secondchancemarket-85097.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334576143807:android:acc10cb1dfb1752662a50a",
+        "android_client_info": {
+          "package_name": "com.github.dewarepk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeWEwNFxALWGKHycWPqtGmPM8v1OXuKXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
