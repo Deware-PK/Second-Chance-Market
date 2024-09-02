@@ -11,11 +11,16 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.function.Consumer;
+
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText username;
+    private EditText eMail;
     private EditText password;
+    private final FirebaseAuth auth = FirebaseAuth.getInstance();
     
     // Login UI
     @Override
@@ -24,13 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        Intent intent = new Intent(this, StoreActivity.class);
-        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = userPreferences.edit();
-        boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
-
-        if (!isLoggedIn) {
-            username = this.findViewById(R.id.usernameBtn);
+        if (!ValidateUtil.isLogin(this.getApplicationContext())) {
+            eMail = this.findViewById(R.id.emailBtn);
             password = this.findViewById(R.id.passwordBtn);
             Button loginButton = this.findViewById(R.id.signInBtn);
             TextView textView = this.findViewById(R.id.signUp_Btn);
@@ -40,21 +40,37 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             loginButton.setOnClickListener(view -> {
-                if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
-                    Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.apply();
-                    this.startActivity(intent);
-                    this.finish();
-                }else {
-                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
-                }
+                this.signIn(eMail.getText().toString(), password.getText().toString());
             });
+
         } else {
-            this.startActivity(intent);
+            this.startActivity(new Intent(this, StoreActivity.class));
             this.finish();
         }
 
+    }
+
+    private void signIn(String email, String password) {
+
+        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPreferences.edit();
+        boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
+        Intent nextIntent = new Intent(this, StoreActivity.class);
+
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // FirebaseUser user = auth.getCurrentUser();
+                        Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
+
+                        editor.putBoolean("isLoggedIn", true);
+                        editor.apply();
+                        this.startActivity(nextIntent);
+                        this.finish();
+
+                    } else {
+                        Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
