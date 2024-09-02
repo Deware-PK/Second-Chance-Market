@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
             username = this.findViewById(R.id.usernameBtn);
             password = this.findViewById(R.id.passwordBtn);
             Button loginButton = this.findViewById(R.id.signInBtn);
+            TextView textView = this.findViewById(R.id.signUp_Btn);
+
+            textView.setOnClickListener(view -> {
+                Toast.makeText(this, "Madame", Toast.LENGTH_SHORT).show();
+            });
 
             loginButton.setOnClickListener(view -> {
                 if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
