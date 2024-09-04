@@ -11,9 +11,10 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.function.Consumer;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             this.startActivity(new Intent(this, StoreActivity.class));
             this.finish();
+
         }
 
     }
@@ -57,6 +59,12 @@ public class LoginActivity extends AppCompatActivity {
         boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
         Intent nextIntent = new Intent(this, StoreActivity.class);
 
+        FirestoreHandler database = new FirestoreHandler();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Data shouldn't be empty!" , Toast.LENGTH_SHORT).show();
+            return;
+        }
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -69,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         this.finish();
 
                     } else {
+
                         Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
