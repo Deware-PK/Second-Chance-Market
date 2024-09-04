@@ -14,11 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
-
+/**
+ * The class represent the login activity.
+ */
 public class LoginActivity extends AppCompatActivity {
 
+    /** UI elements **/
     private EditText eMail;
     private EditText password;
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -36,15 +40,12 @@ public class LoginActivity extends AppCompatActivity {
             Button loginButton = this.findViewById(R.id.signInBtn);
             TextView textView = this.findViewById(R.id.signUpBtn);
 
-            textView.setOnClickListener(view -> {
-                Toast.makeText(this, "Madame", Toast.LENGTH_SHORT).show();
-            });
+            textView.setOnClickListener(view -> Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show());
 
-            loginButton.setOnClickListener(view -> {
-                this.signIn(eMail.getText().toString(), password.getText().toString());
-            });
+            loginButton.setOnClickListener(view -> this.signIn(eMail.getText().toString(), password.getText().toString()));
 
         } else {
+
             this.startActivity(new Intent(this, StoreActivity.class));
             this.finish();
 
@@ -56,22 +57,29 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = userPreferences.edit();
-        boolean isLoggedIn = userPreferences.getBoolean("isLoggedIn", false);
         Intent nextIntent = new Intent(this, StoreActivity.class);
 
-        FirestoreHandler database = new FirestoreHandler();
-
+        // Prevent empty input because it will crash the app.
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Data shouldn't be empty!" , Toast.LENGTH_SHORT).show();
             return;
         }
+
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // FirebaseUser user = auth.getCurrentUser();
+                        FirebaseUser user = auth.getCurrentUser();
+
+                        // Check if user is null
+                        if (user == null) {
+                            Toast.makeText(this, "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
 
                         editor.putBoolean("isLoggedIn", true);
+                        editor.putString("userId", user.getUid());
                         editor.apply();
                         this.startActivity(nextIntent);
                         this.finish();

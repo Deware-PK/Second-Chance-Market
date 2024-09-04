@@ -11,11 +11,28 @@ public final class ValidateUtil {
     /** Internal database handler **/
     private static final FirestoreHandler databaseHandler = new FirestoreHandler();
 
+    /**
+     * Check if user is logged in
+     *
+     * @param context
+     * @return
+     */
     public static boolean isLogin(Context context) {
         SharedPreferences userPreferences = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
         return userPreferences.getBoolean("isLoggedIn", false);
     }
 
+    /**
+     *
+     * Validating user input
+     *
+     * @param fullname
+     * @param email
+     * @param username
+     * @param password
+     * @param passwordConfirm
+     * @return
+     */
     public static boolean validateInput(String fullname, String email, String username, String password, String passwordConfirm) {
 
         if (fullname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())

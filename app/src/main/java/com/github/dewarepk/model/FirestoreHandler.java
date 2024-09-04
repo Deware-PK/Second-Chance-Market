@@ -11,16 +11,17 @@ import java.util.concurrent.CompletableFuture;
 
 public class FirestoreHandler {
 
+    /** Firebase database instance **/
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
-
-    public void establishUser(String id, String fullname, String username, String email, FirestoreCallback callback) {
+    /** Establish a new user **/
+    public void establishUser(String userId, String fullname, String username, String email, FirestoreCallback callback) {
         final Map<String, Object> user = new HashMap<>();
         user.put("fullname", fullname);
         user.put("username", username);
         user.put("email", email);
 
-        database.collection("users").document(id)
+        database.collection("users").document(userId)
                 .set(user)
                 .addOnSuccessListener(result -> {
                     callback.onSuccess();
@@ -28,8 +29,9 @@ public class FirestoreHandler {
                 .addOnFailureListener(callback::onFailure);
     }
 
-    public void deleteUser(String id, FirestoreCallback callback) {
-        database.collection("users").document(id)
+    /** Delete a user **/
+    public void deleteUser(String userId, FirestoreCallback callback) {
+        database.collection("users").document(userId)
                 .delete()
                 .addOnSuccessListener(result -> {
                     callback.onSuccess();
@@ -38,8 +40,9 @@ public class FirestoreHandler {
     }
 
 
-    public void getUser(String id, FirestoreCallback callback) {
-        database.collection("users").document(id)
+    /** Get a specific user by userId **/
+    public void getUser(String userId, FirestoreCallback callback) {
+        database.collection("users").document(userId)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists())
@@ -51,7 +54,11 @@ public class FirestoreHandler {
                 .addOnFailureListener(callback::onFailure);
     }
 
-
+    /**
+     * get all users
+     *
+     * @param callback
+     */
     public void getUsers(FirestoreCallback callback) {
         CollectionReference userRef = database.collection("users");
 
@@ -66,6 +73,13 @@ public class FirestoreHandler {
                 });
     }
 
+    /**
+     * check if a specific field exist
+     *
+     * @param field
+     * @param value
+     * @return
+     */
     public CompletableFuture<Boolean> checkIfSpecificExist(String field, String value) {
         CompletableFuture<Boolean> future = new CompletableFuture<>();
 

@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/** The class represent the store activity. */
 public class StoreActivity extends AppCompatActivity {
 
     @Override
