@@ -1,6 +1,9 @@
 package com.github.dewarepk.model;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -15,11 +18,33 @@ public class FirestoreHandler {
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
     /** Establish a new user **/
-    public void establishUser(String userId, String fullname, String username, String email, FirestoreCallback callback) {
+    public void establishUser(String userId, String fullName, String username, String email, FirestoreCallback callback) {
+        WalletHandler walletHandler = new WalletHandler();
+
         final Map<String, Object> user = new HashMap<>();
-        user.put("fullname", fullname);
-        user.put("username", username);
+        user.put("fullName", fullName);
         user.put("email", email);
+        user.put("username", username);
+        user.put("createdAt", FieldValue.serverTimestamp());
+
+        String address = walletHandler.createWallet(0.0, new FirestoreCallback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(Exception ex) {
+
+            }
+
+            @Override
+            public void onDataReceived(Map<String, Object> data) {
+
+            }
+        });
+
+        user.put("wallet_address", address);
 
         database.collection("users").document(userId)
                 .set(user)
@@ -69,6 +94,53 @@ public class FirestoreHandler {
                         callback.onFailure(task.getException());
 
                 });
+    }
+
+    /**
+     * Get data value from specific field
+     *
+     * @param userId
+     * @param field
+     * @return
+     */
+    public CompletableFuture<Object> getSpecificData(String userId, String field) {
+        CompletableFuture<Object> future = new CompletableFuture<>();
+        DocumentReference docRef = database.collection("users").document(userId);
+
+        docRef.get().addOnCompleteListener(task -> {
+           if (task.isSuccessful()) {
+               DocumentSnapshot documentSnapshot = task.getResult();
+               if (documentSnapshot != null && documentSnapshot.exists()) {
+                   Object fieldValue = documentSnapshot.get(field);
+                   future.complete(fieldValue);
+               } else {
+                   future.completeExceptionally(new Exception("Document does not exist!"));
+               }
+           } else {
+               future.completeExceptionally(task.getException());
+           }
+        });
+
+        return future;
+    }
+
+    /**
+     * A method to update data in the database
+     *
+     * @param collectionName
+     * @param documentId
+     * @param updates
+     * @return
+     */
+    public CompletableFuture<Void> updateData(String collectionName, String documentId, Map<String, Object> updates) {
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        DocumentReference docRef = database.collection(collectionName).document(documentId);
+
+        docRef.update(updates)
+                .addOnSuccessListener(nil -> future.complete(null))
+                .addOnFailureListener(future::completeExceptionally);
+
+        return future;
     }
 
     /**

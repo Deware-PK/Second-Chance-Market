@@ -17,6 +17,12 @@
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
+            android:name=".VerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".StoreActivity"
             android:exported="false" />
         <activity

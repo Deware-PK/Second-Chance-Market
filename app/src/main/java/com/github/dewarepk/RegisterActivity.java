@@ -96,12 +96,20 @@ public class RegisterActivity extends AppCompatActivity {
                                             FirebaseUser user = auth.getCurrentUser();
                                             if (user != null) {
                                                 String uid = user.getUid();
-                                                Log.d("Key" , "Key: " + uid);
+
                                                 handler.establishUser(uid, fullName, username, email, new FirestoreCallback() {
                                                     @Override
                                                     public void onSuccess() {
                                                         editor.putString("userId", user.getUid());
                                                         editor.apply();
+
+                                                        if (!ValidateUtil.isEmailVerified()) {
+                                                            user.sendEmailVerification();
+                                                            Toast.makeText(RegisterActivity.this, "Verification email sent!", Toast.LENGTH_SHORT).show();
+                                                        }
+
+                                                        RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, VerificationActivity.class));
+                                                        RegisterActivity.this.finish();
                                                     }
 
                                                     @Override

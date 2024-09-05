@@ -6,6 +6,8 @@ import android.util.Log;
 import android.util.Patterns;
 
 import com.github.dewarepk.model.FirestoreHandler;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public final class ValidateUtil {
 
@@ -51,8 +53,24 @@ public final class ValidateUtil {
         return true;
     }
 
+    /**
+     * Check whether email verified or not
+     *
+     * @return
+     */
+    public static boolean isEmailVerified() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user != null && user.isEmailVerified();
+    }
+
+    /**
+     * Check if password match the pattern
+     *
+     * @param password
+     * @return
+     */
     public static boolean checkPasswordPattern(String password) {
-        String passwordPattern = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=!]).{8,}$";
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$";
         return password.matches(passwordPattern);
     }
 
