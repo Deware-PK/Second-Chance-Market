@@ -93,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             FirebaseUser user = auth.getCurrentUser();
                                             if (user != null) {
                                                 String uid = user.getUid();
+                                                Log.d("Key" , "Key: " + uid);
                                                 handler.establishUser(uid, fullName, username, email, new FirestoreCallback() {
                                                     @Override
                                                     public void onSuccess() {
