@@ -36,22 +36,22 @@ public final class ValidateUtil {
      */
     public static boolean validateInput(String fullname, String email, String username, String password, String passwordConfirm) {
 
-        if (fullname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) {
-            Log.d("Validate", "Debug 1");
+        if (fullname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
             return false;
-        }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Log.d("Validate", "Debug 2");
-            return false;
-        }
 
-        if (!password.equals(passwordConfirm)) {
-            Log.d("Validate", "Debug 3");
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
             return false;
-        }
+
+
+        if (!password.equals(passwordConfirm))
+            return false;
+
 
         return true;
     }
 
+    public static boolean checkPasswordPattern(String password) {
+        return true;
+    }
 }

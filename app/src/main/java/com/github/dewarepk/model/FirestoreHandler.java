@@ -23,9 +23,7 @@ public class FirestoreHandler {
 
         database.collection("users").document(userId)
                 .set(user)
-                .addOnSuccessListener(result -> {
-                    callback.onSuccess();
-                })
+                .addOnSuccessListener(result -> callback.onSuccess())
                 .addOnFailureListener(callback::onFailure);
     }
 
