@@ -52,6 +52,9 @@ public final class ValidateUtil {
     }
 
     public static boolean checkPasswordPattern(String password) {
-        return true;
+        String passwordPattern = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=!]).{8,}$";
+        return password.matches(passwordPattern);
     }
+
+
 }

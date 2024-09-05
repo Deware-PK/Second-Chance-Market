@@ -52,10 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordReg = this.findViewById(R.id.passwordText);
         confirmedPasswordReg = this.findViewById(R.id.confirmedPasswordText);
 
-
         signUpButton = this.findViewById(R.id.signUpButton);
-
-
 
         TextView signInText = this.findViewById(R.id.signInText);
 
@@ -77,6 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "Please fill the form", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            if (!ValidateUtil.checkPasswordPattern(password)) {
+                Toast.makeText(RegisterActivity.this, "Password doesn't match the pattern.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
             handler.checkIfSpecificExist("email", email).thenAccept(emailResult -> {
                 if (emailResult) {
