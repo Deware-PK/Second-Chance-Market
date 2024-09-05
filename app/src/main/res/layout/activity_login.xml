@@ -27,6 +27,7 @@
         android:layout_marginTop="5dp" />
 
     <!-- Username input -->
+
     <EditText
         android:id="@+id/emailBtn"
         android:layout_width="match_parent"

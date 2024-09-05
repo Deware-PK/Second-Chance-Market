@@ -3,6 +3,7 @@ package com.github.dewarepk;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,7 +41,12 @@ public class LoginActivity extends AppCompatActivity {
             Button loginButton = this.findViewById(R.id.signInBtn);
             TextView textView = this.findViewById(R.id.signUpBtn);
 
-            textView.setOnClickListener(view -> Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show());
+
+
+            textView.setOnClickListener(view -> {
+                this.startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                this.finish();
+            });
 
             loginButton.setOnClickListener(view -> this.signIn(eMail.getText().toString(), password.getText().toString()));
 
