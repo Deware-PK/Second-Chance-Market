@@ -65,13 +65,15 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/forgotPasswordBtn"
+        android:id="@+id/forgotPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="Forgot Password"
+        android:clickable="true"
+        android:focusable="true"
         android:textColor="@color/deepblue" />
 
     <androidx.appcompat.widget.AppCompatButton

@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bluemain">#EEF0F8</color>
     <color name="deepblue">#12125B</color>
+    <color name="light_red">#f44336</color>
 </resources>
