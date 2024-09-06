@@ -6,6 +6,7 @@ import android.util.Log;
 import android.util.Patterns;
 
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.SecureAccess;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,8 +22,15 @@ public final class ValidateUtil {
      * @return
      */
     public static boolean isLogin(Context context) {
-        SharedPreferences userPreferences = context.getSharedPreferences("UserPreferences", Context.MODE_PRIVATE);
-        return userPreferences.getBoolean("isLoggedIn", false);
+        try {
+            SecureAccess secureAccess = new SecureAccess(context, "UserPreferences");
+            return secureAccess.getValue("isLoggedIn", Boolean.class);
+
+        } catch (Exception exception) {
+            Log.e("ValidateUtil", "Error getting specific data", exception);
+        }
+
+        return false;
     }
 
     /**
