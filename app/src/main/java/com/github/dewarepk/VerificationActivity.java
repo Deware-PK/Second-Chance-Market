@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,6 +42,7 @@ public class VerificationActivity extends AppCompatActivity {
         String userId = userPreferences.getString("userId", "");
         Button okayButton = this.findViewById(R.id.okayBtn);
         TextView resendLink = this.findViewById(R.id.resend_Link);
+        Button returnButton = this.findViewById(R.id.return_back);
 
         database.getSpecificData(userId, "email")
                 .thenAccept(fieldValue -> {
@@ -51,6 +54,8 @@ public class VerificationActivity extends AppCompatActivity {
                 });
 
 
+
+
         okayButton.setOnClickListener(view -> {
             this.startActivity(new Intent(VerificationActivity.this, StoreActivity.class));
             this.finish();
@@ -59,7 +64,18 @@ public class VerificationActivity extends AppCompatActivity {
         resendLink.setOnClickListener(view -> {
             this.resendEmailVerification(resendLink);
         });
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(View v) {
+                setContentView(R.layout.activity_login);
+            }
+        });
+
+
     }
+
 
     private void resendEmailVerification(TextView resendLink) {
 
