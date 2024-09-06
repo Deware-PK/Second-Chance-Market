@@ -6,7 +6,9 @@ import android.util.Log;
 import android.util.Patterns;
 
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.RandomKeyGenerator;
 import com.github.dewarepk.model.SecureAccess;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -81,6 +83,4 @@ public final class ValidateUtil {
         String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$";
         return password.matches(passwordPattern);
     }
-
-
 }

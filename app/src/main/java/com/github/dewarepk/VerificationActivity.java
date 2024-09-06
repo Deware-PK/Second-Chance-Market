@@ -17,9 +17,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.github.dewarepk.model.FirestoreCallback;
 import com.github.dewarepk.model.FirestoreHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -103,4 +107,5 @@ public class VerificationActivity extends AppCompatActivity {
             }
         }.start();
     }
+
 }
