@@ -44,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         FirestoreHandler handler = new FirestoreHandler();
+
+
         SecureAccess secureAccess = null;
         try {
             secureAccess = new SecureAccess(this, "UserPreferences");
