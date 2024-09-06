@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.FirestoreCallback;
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,8 +44,12 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         FirestoreHandler handler = new FirestoreHandler();
-        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = userPreferences.edit();
+        SecureAccess secureAccess = null;
+        try {
+            secureAccess = new SecureAccess(this, "UserPreferences");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         fullNameReg = this.findViewById(R.id.fullNameText);
         emailReg = this.findViewById(R.id.emailText);
@@ -61,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
             this.finish();
         });
 
+        SecureAccess finalSecureAccess = secureAccess;
         signUpButton.setOnClickListener(event -> {
             String email = emailReg.getText().toString();
             String fullName = fullNameReg.getText().toString();
@@ -100,8 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
                                                 handler.establishUser(uid, fullName, username, email, new FirestoreCallback() {
                                                     @Override
                                                     public void onSuccess() {
-                                                        editor.putString("userId", user.getUid());
-                                                        editor.apply();
+
+                                                        finalSecureAccess.putValue("userId", user.getUid());
 
                                                         if (!ValidateUtil.isEmailVerified()) {
                                                             user.sendEmailVerification();

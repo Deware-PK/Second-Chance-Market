@@ -1,9 +1,7 @@
 package com.github.dewarepk;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +10,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,7 +51,13 @@ public class LoginActivity extends AppCompatActivity {
                 this.finish();
             });
 
-            loginButton.setOnClickListener(view -> this.signIn(eMail.getText().toString(), password.getText().toString()));
+            loginButton.setOnClickListener(view -> {
+                try {
+                    this.signIn(eMail.getText().toString(), password.getText().toString());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
 
         } else {
 
@@ -64,10 +68,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void signIn(String email, String password) {
+    private void signIn(String email, String password) throws Exception {
+        SecureAccess secureAccess = new SecureAccess(this, "UserPreferences");
 
-        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = userPreferences.edit();
         Intent nextIntent = new Intent(this, StoreActivity.class);
 
         // Prevent empty input because it will crash the app.
@@ -89,9 +92,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         Toast.makeText(LoginActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
 
-                        editor.putBoolean("isLoggedIn", true);
-                        editor.putString("userId", user.getUid());
-                        editor.apply();
+                        secureAccess.putValue("isLoggedIn", true);
+                        secureAccess.putValue("userId", user.getUid());
+
                         this.startActivity(nextIntent);
                         this.finish();
 
