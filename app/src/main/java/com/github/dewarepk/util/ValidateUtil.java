@@ -1,14 +1,11 @@
 package com.github.dewarepk.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.util.Patterns;
 
 import com.github.dewarepk.model.FirestoreHandler;
-import com.github.dewarepk.model.RandomKeyGenerator;
 import com.github.dewarepk.model.SecureAccess;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
