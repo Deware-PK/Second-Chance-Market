@@ -1,8 +1,10 @@
 package com.github.dewarepk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +24,12 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         EditText emailInput = this.findViewById(R.id.email_input);
         Button confirmButton = this.findViewById(R.id.confirm_button);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        ImageView imageViewReturn = this.findViewById(R.id.return_back);
+
+        imageViewReturn.setOnClickListener(aVoid -> {
+            this.startActivity(new Intent(ForgetPasswordActivity.this , LoginActivity.class));
+            this.finish();
+        });
 
         confirmButton.setOnClickListener(aVoid -> {
             String email = emailInput.getText().toString();
