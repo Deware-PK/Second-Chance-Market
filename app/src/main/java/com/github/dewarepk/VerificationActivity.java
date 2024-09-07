@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class VerificationActivity extends AppCompatActivity {
         String userId = userPreferences.getString("userId", "");
         Button okayButton = this.findViewById(R.id.okayBtn);
         TextView resendLink = this.findViewById(R.id.resend_Link);
-        Button returnButton = this.findViewById(R.id.return_back);
+        ImageView imageViewReturn = this.findViewById(R.id.return_back);
 
         database.getSpecificData(userId, "email")
                 .thenAccept(fieldValue -> {
@@ -65,14 +66,10 @@ public class VerificationActivity extends AppCompatActivity {
             this.resendEmailVerification(resendLink);
         });
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-
-
-            public void onClick(View v) {
-                setContentView(R.layout.activity_login);
-            }
+        imageViewReturn.setOnClickListener(aVoid -> {
+           this.startActivity(new Intent(VerificationActivity.this , LoginActivity.class));
+           this.finish();
         });
-
 
     }
 
