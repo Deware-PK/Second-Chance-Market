@@ -17,6 +17,18 @@
             android:name=".ActivityAddressContainer"
             android:exported="false" />
         <activity
+            android:name=".AndressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestGuidline"
+            android:exported="false" />
+        <activity
+            android:name=".OTPVerification"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
