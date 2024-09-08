@@ -32,7 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     /** UI elements **/
     private EditText emailReg;
     private EditText passwordReg;
-    private EditText fullNameReg;
+    private EditText firstNameReg;
+    private EditText lastNameReg;
     private EditText usernameReg;
     private EditText confirmedPasswordReg;
     private Button signUpButton;
@@ -53,7 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        fullNameReg = this.findViewById(R.id.fullNameText);
+        firstNameReg = this.findViewById(R.id.firstNameText);
+        lastNameReg = this.findViewById(R.id.lastNameText);
         emailReg = this.findViewById(R.id.emailText);
         usernameReg = this.findViewById(R.id.usernameText);
         passwordReg = this.findViewById(R.id.passwordText);
@@ -71,12 +73,13 @@ public class RegisterActivity extends AppCompatActivity {
         SecureAccess finalSecureAccess = secureAccess;
         signUpButton.setOnClickListener(event -> {
             String email = emailReg.getText().toString();
-            String fullName = fullNameReg.getText().toString();
+            String firstName = firstNameReg.getText().toString();
+            String lastName = lastNameReg.getText().toString();
             String username = usernameReg.getText().toString();
             String password = passwordReg.getText().toString();
             String confirmedPassword = confirmedPasswordReg.getText().toString();
 
-            boolean isInputValid = ValidateUtil.validateInput(fullName, email, username, password, confirmedPassword);
+            boolean isInputValid = ValidateUtil.validateInput(firstName, lastName, email, username, password, confirmedPassword);
 
             if (!isInputValid) {
                 Toast.makeText(RegisterActivity.this, "Please fill the form", Toast.LENGTH_SHORT).show();
@@ -105,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (user != null) {
                                                 String uid = user.getUid();
 
-                                                handler.establishUser(uid, fullName, username, email, new FirestoreCallback() {
+                                                handler.establishUser(uid, firstName, lastName, username, email, new FirestoreCallback() {
                                                     @Override
                                                     public void onSuccess() {
 

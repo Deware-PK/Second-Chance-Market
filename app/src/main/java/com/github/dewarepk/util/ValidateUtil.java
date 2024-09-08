@@ -36,16 +36,17 @@ public final class ValidateUtil {
      *
      * Validating user input
      *
-     * @param fullname
+     * @param firstName
+     * @param lastName
      * @param email
      * @param username
      * @param password
      * @param passwordConfirm
      * @return
      */
-    public static boolean validateInput(String fullname, String email, String username, String password, String passwordConfirm) {
+    public static boolean validateInput(String firstName, String lastName, String email, String username, String password, String passwordConfirm) {
 
-        if (fullname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
             return false;
 
 

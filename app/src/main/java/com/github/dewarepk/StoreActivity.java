@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /** The class represent the store activity. */
 public class StoreActivity extends AppCompatActivity {
 
@@ -19,21 +21,18 @@ public class StoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.store);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
         SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = userPreferences.edit();
 
         Button logout_button = findViewById(R.id.logout_button);
         logout_button.setOnClickListener(view -> {
+            this.startActivity(new Intent(StoreActivity.this , LoginActivity.class));
+            this.finish();
             editor.remove("isLoggedIn");
             editor.apply();
-            this.startActivity(new Intent(this, LoginActivity.class));
-            this.finish();
+            auth.signOut();
         });
 
     }

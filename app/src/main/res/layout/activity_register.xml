@@ -25,14 +25,29 @@
 
 
   <EditText
-      android:id="@+id/fullNameText"
+      android:id="@+id/firstNameText"
+      android:layout_width="match_parent"
+      android:layout_height="55dp"
+      android:layout_marginStart="20dp"
+      android:layout_marginTop="55dp"
+      android:layout_marginEnd="20dp"
+      android:background="@drawable/stroke_text"
+      android:hint="First name"
+      android:inputType="text"
+      android:maxLines="1"
+      android:paddingStart="20dp"
+      android:paddingEnd="30dp"
+      android:textSize="16sp" />
+
+  <EditText
+      android:id="@+id/lastNameText"
       android:layout_width="match_parent"
       android:layout_height="55dp"
       android:layout_marginStart="20dp"
       android:layout_marginTop="40dp"
       android:layout_marginEnd="20dp"
       android:background="@drawable/stroke_text"
-      android:hint="Full Name"
+      android:hint="Last name"
       android:inputType="text"
       android:maxLines="1"
       android:paddingStart="20dp"
