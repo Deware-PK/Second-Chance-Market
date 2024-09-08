@@ -14,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.SecureAccess;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,9 +28,16 @@ public class VerificationActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_verification);
         FirestoreHandler database = new FirestoreHandler();
+        String userId;
 
-        SharedPreferences userPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
-        String userId = userPreferences.getString("userId", "");
+        try {
+            SecureAccess secureAccess = new SecureAccess(this.getApplicationContext(), "UserPreferences");
+            userId = secureAccess.getValue("userId", String.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
         Button okayButton = this.findViewById(R.id.okayBtn);
         TextView resendLink = this.findViewById(R.id.resend_Link);
         ImageView imageViewReturn = this.findViewById(R.id.return_back);
@@ -42,8 +50,6 @@ public class VerificationActivity extends AppCompatActivity {
                     Log.e("VerificationActivity", "Error getting specific data", ex);
                     return null;
                 });
-
-
 
 
         okayButton.setOnClickListener(view -> {
