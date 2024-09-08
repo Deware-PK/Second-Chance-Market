@@ -5,7 +5,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
@@ -89,12 +88,13 @@ public class FirestoreHandler {
         userRef.get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        callback.onSuccess();
                         QuerySnapshot querySnapshot = task.getResult();
                         querySnapshot.forEach(document -> callback.onDataReceived(document.getData()));
                     } else
                         callback.onFailure(task.getException());
 
-                });
+                    });
     }
 
     /**

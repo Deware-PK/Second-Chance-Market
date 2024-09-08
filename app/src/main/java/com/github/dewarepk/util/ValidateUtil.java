@@ -21,6 +21,7 @@ public final class ValidateUtil {
      * @return
      */
     public static boolean isLogin(Context context) {
+
         try {
             SecureAccess secureAccess = new SecureAccess(context, "UserPreferences");
             return secureAccess.getValue("isLoggedIn", Boolean.class);

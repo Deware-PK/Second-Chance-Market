@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:text="CrazyTime@EvolutionCasino.com"
+            android:text="replace_me@gmail.com"
             android:textColor="#CC000000"
             android:textSize="16sp"
             android:textStyle="bold"
