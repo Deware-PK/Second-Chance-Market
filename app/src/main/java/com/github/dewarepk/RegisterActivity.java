@@ -1,9 +1,7 @@
 package com.github.dewarepk;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText lastNameReg;
     private EditText usernameReg;
     private EditText confirmedPasswordReg;
-    private Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordReg = this.findViewById(R.id.passwordText);
         confirmedPasswordReg = this.findViewById(R.id.confirmedPasswordText);
 
-        signUpButton = this.findViewById(R.id.signUpButton);
-
+        Button signUpButton = this.findViewById(R.id.signUpButton);
         TextView signInText = this.findViewById(R.id.signInText);
 
         signInText.setOnClickListener(view -> {
