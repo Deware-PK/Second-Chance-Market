@@ -18,11 +18,12 @@ public class FirestoreHandler {
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
     /** Establish a new user **/
-    public void establishUser(String userId, String fullName, String username, String email, FirestoreCallback callback) {
+    public void establishUser(String userId, String firstName, String lastName, String username, String email, FirestoreCallback callback) {
         WalletHandler walletHandler = new WalletHandler();
 
         final Map<String, Object> user = new HashMap<>();
-        user.put("fullName", fullName);
+        user.put("firstName", firstName);
+        user.put("lastName", lastName);
         user.put("email", email);
         user.put("username", username);
         user.put("createdAt", FieldValue.serverTimestamp());
