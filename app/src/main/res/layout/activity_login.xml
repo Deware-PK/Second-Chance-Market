@@ -9,7 +9,6 @@
     android:gravity="center"
     tools:context=".LoginActivity">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,16 +87,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/signUpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/deepblue"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Don't have an account? Sign Up"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -105,7 +94,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp">
-
+        
 
 
         <View
@@ -137,7 +126,16 @@
 
     </RelativeLayout>
 
-
+    <TextView
+        android:id="@+id/signUpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/deepblue"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Don't have an account? Sign Up"/>
 
 
 </LinearLayout>
