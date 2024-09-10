@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.dewarepk.model.SecureAccess;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /** The class represent the store activity. */
 public class StoreActivity extends AppCompatActivity {
 
