@@ -2,6 +2,7 @@ package com.github.dewarepk;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.FirestoreCallback;
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.InvalidCause;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,74 +77,87 @@ public class RegisterActivity extends AppCompatActivity {
             String password = passwordReg.getText().toString();
             String confirmedPassword = confirmedPasswordReg.getText().toString();
 
-            boolean isInputValid = ValidateUtil.validateInput(firstName, lastName, email, username, password, confirmedPassword);
+            InvalidCause invalidCause = ValidateUtil.validateInput(firstName, lastName, email, username, password, confirmedPassword);
 
-            if (!isInputValid) {
-                Toast.makeText(RegisterActivity.this, "Please fill the form", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            switch (invalidCause){
+                case EMPTY_DATA:
+                    Toast.makeText(RegisterActivity.this, "Field cannot be empty.", Toast.LENGTH_SHORT).show();
+                    break;
+                case EMAIL_MISMATCH:
+                    Toast.makeText(RegisterActivity.this, "Email is invalid.",Toast.LENGTH_SHORT).show();
+                    break;
+                case PASSWORD_UNMATCHED:
+                    Toast.makeText(RegisterActivity.this, "Passwords do NOT match.",Toast.LENGTH_SHORT).show();
+                    break;
+                case NONE:
+                    if (password.length() < 8 ){
+                        Toast.makeText(RegisterActivity.this, "Password must be at least 8 characters."
+                                , Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (!ValidateUtil.checkPasswordPattern(password)) {
+                        Toast.makeText(RegisterActivity.this, "Password must contain (a-z),(A-Z),(0-9) and Special Characters."
+                                , Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
-            if (!ValidateUtil.checkPasswordPattern(password)) {
-                Toast.makeText(RegisterActivity.this, "Password doesn't match the pattern.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-
-            handler.checkIfSpecificExist("email", email).thenAccept(emailResult -> {
-                if (emailResult) {
-                    Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
-                } else {
-                    handler.checkIfSpecificExist("username", username).thenAccept(usernameResult -> {
-                        if (usernameResult) {
-                            Toast.makeText(this, "Username already exists!", Toast.LENGTH_SHORT).show();
+                    handler.checkIfSpecificExist("email", email).thenAccept(emailResult -> {
+                        if (emailResult) {
+                            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
                         } else {
+                            handler.checkIfSpecificExist("username", username).thenAccept(usernameResult -> {
+                                if (usernameResult) {
+                                    Toast.makeText(this, "Username already exists!", Toast.LENGTH_SHORT).show();
+                                } else {
 
-                            auth.createUserWithEmailAndPassword(email, password)
-                                    .addOnCompleteListener(task -> {
-                                        if (task.isSuccessful()) {
-                                            FirebaseUser user = auth.getCurrentUser();
-                                            if (user != null) {
-                                                String uid = user.getUid();
+                                    auth.createUserWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener(task -> {
+                                                if (task.isSuccessful()) {
+                                                    FirebaseUser user = auth.getCurrentUser();
+                                                    if (user != null) {
+                                                        String uid = user.getUid();
 
-                                                handler.establishUser(uid, firstName, lastName, username, email, new FirestoreCallback() {
-                                                    @Override
-                                                    public void onSuccess() {
+                                                        handler.establishUser(uid, firstName, lastName, username, email, new FirestoreCallback() {
+                                                            @Override
+                                                            public void onSuccess() {
 
-                                                        finalSecureAccess.putValue("userId", user.getUid());
+                                                                finalSecureAccess.putValue("userId", user.getUid());
 
-                                                        if (!ValidateUtil.isEmailVerified()) {
-                                                            user.sendEmailVerification();
-                                                            Toast.makeText(RegisterActivity.this, "Verification email sent!", Toast.LENGTH_SHORT).show();
-                                                        }
+                                                                if (!ValidateUtil.isEmailVerified()) {
+                                                                    user.sendEmailVerification();
+                                                                    Toast.makeText(RegisterActivity.this, "Verification email sent!", Toast.LENGTH_SHORT).show();
+                                                                }
 
-                                                        RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, VerificationActivity.class));
-                                                        RegisterActivity.this.finish();
+                                                                RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, VerificationActivity.class));
+                                                                RegisterActivity.this.finish();
+                                                            }
+
+                                                            @Override
+                                                            public void onFailure(Exception ex) {
+                                                                Toast.makeText(RegisterActivity.this, "Register failed! Please try again later.", Toast.LENGTH_SHORT).show();
+                                                                RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                                RegisterActivity.this.finish();
+                                                            }
+
+                                                            @Override
+                                                            public void onDataReceived(Map<String, Object> data) {
+
+                                                            }
+                                                        });
                                                     }
+                                                }
+                                            });
 
-                                                    @Override
-                                                    public void onFailure(Exception ex) {
-                                                        Toast.makeText(RegisterActivity.this, "Register failed! Please try again later.", Toast.LENGTH_SHORT).show();
-                                                        RegisterActivity.this.startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                                        RegisterActivity.this.finish();
-                                                    }
-
-                                                    @Override
-                                                    public void onDataReceived(Map<String, Object> data) {
-
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    });
+                                }
+                            });
 
                         }
                     });
+                    break;
+            }
 
-                }
-            });
+
+
         });
-
-
-
     }
 }

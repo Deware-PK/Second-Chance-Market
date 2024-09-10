@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Patterns;
 
 import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.InvalidCause;
 import com.github.dewarepk.model.SecureAccess;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,7 @@ public final class ValidateUtil {
         return false;
     }
 
+
     /**
      *
      * Validating user input
@@ -45,21 +47,21 @@ public final class ValidateUtil {
      * @param passwordConfirm
      * @return
      */
-    public static boolean validateInput(String firstName, String lastName, String email, String username, String password, String passwordConfirm) {
+    public static InvalidCause validateInput(String firstName, String lastName, String email, String username, String password, String passwordConfirm) {
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
-            return false;
+            return InvalidCause.EMPTY_DATA;
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-            return false;
+            return InvalidCause.EMAIL_MISMATCH;
 
 
         if (!password.equals(passwordConfirm))
-            return false;
+            return InvalidCause.PASSWORD_UNMATCHED;
 
 
-        return true;
+        return InvalidCause.NONE;
     }
 
     /**
