@@ -45,8 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         FirestoreHandler handler = new FirestoreHandler();
 
-
         SecureAccess secureAccess = null;
+
         try {
             secureAccess = new SecureAccess(this, "UserPreferences");
         } catch (Exception e) {

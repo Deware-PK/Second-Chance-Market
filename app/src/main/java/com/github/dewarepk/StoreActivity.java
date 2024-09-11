@@ -8,6 +8,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.SecureAccess;
+import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +21,8 @@ public class StoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_store);
+
+        ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         Button logout_button = findViewById(R.id.logout_button);
