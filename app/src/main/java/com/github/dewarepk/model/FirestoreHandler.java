@@ -19,6 +19,7 @@ public class FirestoreHandler {
     /** Establish a new user **/
     public void establishUser(String userId, String firstName, String lastName, String username, String email, FirestoreCallback callback) {
         WalletHandler walletHandler = new WalletHandler();
+        AddressHandler addressHandler = new AddressHandler();
 
         final Map<String, Object> user = new HashMap<>();
         user.put("firstName", firstName);
@@ -27,7 +28,7 @@ public class FirestoreHandler {
         user.put("username", username);
         user.put("createdAt", FieldValue.serverTimestamp());
 
-        String address = walletHandler.createWallet(0.0, new FirestoreCallback() {
+        String walletAddress = walletHandler.createWallet(0.0, new FirestoreCallback() {
             @Override
             public void onSuccess() {
 
@@ -44,7 +45,26 @@ public class FirestoreHandler {
             }
         });
 
-        user.put("wallet_address", address);
+        String address = addressHandler.addAddress(Address.createEmptyInstance(), new FirestoreCallback() {
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(Exception ex) {
+
+            }
+
+            @Override
+            public void onDataReceived(Map<String, Object> data) {
+
+            }
+        });
+
+        user.put("wallet_address", walletAddress);
+        user.put("address", address);
 
         database.collection("users").document(userId)
                 .set(user)
