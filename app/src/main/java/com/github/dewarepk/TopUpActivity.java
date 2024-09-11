@@ -45,12 +45,14 @@ public class TopUpActivity extends AppCompatActivity {
 
         confirmButtonTopup.setOnClickListener(v -> onConfirmClick());
     }
+
     public void onImageClick() {
 
     }
     private void updateTotalTopup(String amount) {
         totalTopup.setText(amount + " $");
     }
+
     private void onConfirmClick() {
 
     }
