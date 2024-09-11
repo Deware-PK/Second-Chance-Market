@@ -27,10 +27,10 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/topprodutc"
+                    android:id="@+id/top_product_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Produtc"
+                    android:text="Product"
                     android:textSize="35dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -44,10 +44,12 @@
                     android:id="@+id/imageprodutc"
                     android:layout_width="186dp"
                     android:layout_height="171dp"
+                    android:layout_marginBottom="44dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/topprodutc"
+                    app:layout_constraintTop_toBottomOf="@+id/top_product_text"
                     app:srcCompat="@drawable/imagegallery" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -123,7 +125,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/appCompatButton"
+        android:id="@+id/add_product_confirm"
         android:layout_width="355dp"
         android:layout_height="68dp"
         android:layout_marginBottom="60dp"

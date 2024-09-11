@@ -1,9 +1,14 @@
 package com.github.dewarepk.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.util.Patterns;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.dewarepk.LoginActivity;
 import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.InvalidCause;
 import com.github.dewarepk.model.SecureAccess;
@@ -34,6 +39,33 @@ public final class ValidateUtil {
         return false;
     }
 
+
+    public static void checkIntegrity(Context context, AppCompatActivity activity) {
+
+        if (context == null || activity == null) {
+            Log.e("ValidateUtil", "Context or Activity is null.");
+            return;
+        }
+
+        try {
+
+            SecureAccess secureAccess = new SecureAccess(context, "UserPreferences");
+            String uid = secureAccess.getValue("userId", String.class);
+
+            if (uid == null) {
+                Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+
+                activity.runOnUiThread(activity::finish);
+            }
+
+        } catch (ClassCastException ex) {
+            Log.e("ValidateUtil", "Data type mismatch when retrieving userId.", ex);
+        } catch (Exception ex) {
+            Log.e("ValidateUtil", "Error getting userId from SecureAccess", ex);
+        }
+    }
 
     /**
      *

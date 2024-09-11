@@ -8,4 +8,20 @@
     <string name="username_hint">Username</string>
     <string name="logout">Logout</string>
     <string name="signup">Sign Up</string>
+
+    <string-array name="bank_accounts">
+        <item>Kasikornbank</item>
+        <item>Bangkok Bank</item>
+        <item>Krungthai Bank</item>
+        <item>Siam Commercial Bank</item>
+        <item>CIMB Thai Bank</item>
+        <item>UOB Bank</item>
+        <item>Krungsri</item>
+        <item>Government Savings Bank</item>
+        <item>BAAC</item>
+        <item>Islamic Bank</item>
+        <item>Thai Credit</item>
+        <item>LH Bank</item>
+        <item>SME Bank</item>
+    </string-array>
 </resources>
