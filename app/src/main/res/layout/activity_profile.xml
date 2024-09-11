@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.054">
 
         <TextView
-            android:id="@+id/textmywallet"
+            android:id="@+id/my_wallet_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Wallet"
@@ -88,7 +88,7 @@
             tools:layout_editor_absoluteY="35dp" />
 
         <TextView
-            android:id="@+id/textmony"
+            android:id="@+id/balanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$9999999"

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.SecureAccess;
+import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,6 +28,9 @@ public class VerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_verification);
+
+        ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
+
         FirestoreHandler database = new FirestoreHandler();
         String userId;
 
