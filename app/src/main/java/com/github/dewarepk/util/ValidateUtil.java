@@ -1,6 +1,5 @@
 package com.github.dewarepk.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.LoginActivity;
 import com.github.dewarepk.model.FirestoreHandler;
-import com.github.dewarepk.model.InvalidCause;
+import com.github.dewarepk.model.InvalidAddressCause;
+import com.github.dewarepk.model.InvalidRegisterationCause;
 import com.github.dewarepk.model.SecureAccess;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.regex.Matcher;
 
 public final class ValidateUtil {
 
@@ -79,21 +81,35 @@ public final class ValidateUtil {
      * @param passwordConfirm
      * @return
      */
-    public static InvalidCause validateInput(String firstName, String lastName, String email, String username, String password, String passwordConfirm) {
+    public static InvalidRegisterationCause validateRegisterInput(String firstName, String lastName, String email, String username, String password, String passwordConfirm) {
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty())
-            return InvalidCause.EMPTY_DATA;
+            return InvalidRegisterationCause.EMPTY_DATA;
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-            return InvalidCause.EMAIL_MISMATCH;
+            return InvalidRegisterationCause.EMAIL_MISMATCH;
 
 
         if (!password.equals(passwordConfirm))
-            return InvalidCause.PASSWORD_UNMATCHED;
+            return InvalidRegisterationCause.PASSWORD_UNMATCHED;
 
 
-        return InvalidCause.NONE;
+        return InvalidRegisterationCause.NONE;
+    }
+
+    public static InvalidAddressCause validateAddress(String postalCode, String phoneNumber) {
+
+        if (postalCode.length() != 5)
+            return InvalidAddressCause.INVALID_POSTAL_CODE;
+
+        if (!phoneNumber.startsWith("0"))
+            return InvalidAddressCause.INVALID_PHONE_START;
+
+        if (phoneNumber.length() != 10)
+            return InvalidAddressCause.INVALID_PHONE_NUMBER;
+
+        return InvalidAddressCause.NONE;
     }
 
     /**

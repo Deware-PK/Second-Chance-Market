@@ -20,9 +20,6 @@
             android:name=".TopUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivityAddressContainer"
-            android:exported="false" />
-        <activity
             android:name=".VerificationActivity"
             android:exported="false" />
         <activity
@@ -35,7 +32,7 @@
             android:name=".StoreActivity"
             android:exported="false" />
         <activity
-            android:name=".LocationAddActivity"
+            android:name=".LocationEditorActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

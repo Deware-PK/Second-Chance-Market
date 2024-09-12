@@ -1,6 +1,10 @@
 package com.github.dewarepk.model;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,7 +42,7 @@ public class WalletHandler {
     }
 
     /**
-     * Get a user's wallet balance
+     * Get user's wallet balance
      *
      * @param address
      * @return
@@ -57,5 +61,40 @@ public class WalletHandler {
         });
 
         return future;
+    }
+
+    public void updateBalance(String userId, double balance, WalletMode mode) {
+        FirestoreHandler firestoreHandler = new FirestoreHandler();
+        WalletHandler walletHandler = new WalletHandler();
+        double[] newBalance = new double[1];
+        final Map<String, Object> map = new HashMap<>();
+
+        firestoreHandler.getSpecificData(userId , "wallet_address").thenAccept(walletAddress -> {
+
+            walletHandler.getBalance((String) walletAddress).thenAccept(amount -> {
+                switch (mode) {
+                    case DEPOSIT:
+                        newBalance[0] = amount + balance;
+                        map.put("balance", newBalance[0]);
+                        firestoreHandler.updateData("wallets", (String) walletAddress, map);
+                        map.clear();
+                        break;
+                    case WITHDRAW:
+
+                        if (amount < balance)
+                            return;
+
+                        newBalance[0] = amount - balance;
+                        map.put("balance", newBalance[0]);
+                        firestoreHandler.updateData("wallets", (String) walletAddress, map);
+                        map.clear();
+                        break;
+                }
+
+            });
+        });
+
+
+
     }
 }
