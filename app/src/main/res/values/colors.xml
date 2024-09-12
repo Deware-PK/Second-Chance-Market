@@ -11,4 +11,12 @@
     <color name="bluemain">#EEF0F8</color>
     <color name="deepblue">#12125B</color>
     <color name="light_red">#FF474C</color>
+
+    <color name="home">#1194AA</color>
+    <color name="cart">#1194AA</color>
+    <color name="profile">#1194AA</color>
+
+    <color name="home_20">#545fb7</color>
+    <color name="cart_20">#545fb7</color>
+    <color name="profile_20">#545fb7</color>
 </resources>
