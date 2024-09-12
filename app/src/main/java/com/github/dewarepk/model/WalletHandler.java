@@ -20,6 +20,31 @@ public class WalletHandler {
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
     /**
+     * Simple wallet creation
+     *
+     * @param balance
+     * @return
+     */
+    public String createWallet(double balance) {
+        return this.createWallet(balance, new FirestoreCallback() {
+            @Override
+            public void onSuccess() {
+                // Do nothing
+            }
+
+            @Override
+            public void onFailure(Exception ex) {
+                // Do nothing
+            }
+
+            @Override
+            public void onDataReceived(Map<String, Object> data) {
+                // Do nothing
+            }
+        });
+    };
+
+    /**
      * Create a new wallet
      *
      * @param balance
@@ -63,6 +88,13 @@ public class WalletHandler {
         return future;
     }
 
+    /**
+     * Update user's wallet balance
+     *
+     * @param userId
+     * @param balance
+     * @param mode
+     */
     public void updateBalance(String userId, double balance, WalletMode mode) {
         FirestoreHandler firestoreHandler = new FirestoreHandler();
         WalletHandler walletHandler = new WalletHandler();
@@ -79,6 +111,7 @@ public class WalletHandler {
                         firestoreHandler.updateData("wallets", (String) walletAddress, map);
                         map.clear();
                         break;
+
                     case WITHDRAW:
 
                         if (amount < balance)

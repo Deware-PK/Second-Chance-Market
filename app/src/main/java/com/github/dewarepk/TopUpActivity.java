@@ -14,23 +14,19 @@ import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
+import com.github.dewarepk.util.ValidateUtil;
 
 public class TopUpActivity extends AppCompatActivity {
-    private ImageView returnBackTopup;
-    private AppCompatButton buttonOneHundred;
-    private AppCompatButton buttonTwoHundred;
-    private AppCompatButton buttonThreeHundred;
-    private AppCompatButton buttonFiveHundred;
-    private AppCompatButton buttonOneThousand;
-    private AppCompatButton buttonTwoThousand;
+
     private EditText totalTopup;
-    private AppCompatButton confirmButtonTopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_top_up);
+
+        ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
 
         String userId;
 
@@ -41,16 +37,17 @@ public class TopUpActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        // Initializing views
-        returnBackTopup = findViewById(R.id.return_back_topup);
-        buttonOneHundred = findViewById(R.id.button_one_hundred);
-        buttonTwoHundred = findViewById(R.id.button_two_hundred);
-        buttonThreeHundred = findViewById(R.id.button_three_hundred);
-        buttonFiveHundred = findViewById(R.id.button_five_hundred);
-        buttonOneThousand = findViewById(R.id.button_one_thousand);
-        buttonTwoThousand = findViewById(R.id.button_2000);
+
+        ImageView returnBackTopup = findViewById(R.id.return_back_topup);
+
+        AppCompatButton buttonOneHundred = findViewById(R.id.button_100);
+        AppCompatButton buttonTwoHundred = findViewById(R.id.button_200);
+        AppCompatButton buttonThreeHundred = findViewById(R.id.button_300);
+        AppCompatButton buttonFiveHundred = findViewById(R.id.button_500);
+        AppCompatButton buttonOneThousand = findViewById(R.id.button_1000);
+        AppCompatButton buttonTwoThousand = findViewById(R.id.button_2000);
         totalTopup = findViewById(R.id.Totaltopup);
-        confirmButtonTopup = findViewById(R.id.confirm_button_topup);
+        AppCompatButton confirmButtonTopup = findViewById(R.id.confirm_button_topup);
 
         // Set button listeners using helper method
         setButtonListener(buttonOneHundred, "100");

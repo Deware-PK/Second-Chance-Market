@@ -28,40 +28,8 @@ public class FirestoreHandler {
         user.put("username", username);
         user.put("createdAt", FieldValue.serverTimestamp());
 
-        String walletAddress = walletHandler.createWallet(0.0, new FirestoreCallback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFailure(Exception ex) {
-
-            }
-
-            @Override
-            public void onDataReceived(Map<String, Object> data) {
-
-            }
-        });
-
-        String address = addressHandler.addAddress(Address.createEmptyInstance(), new FirestoreCallback() {
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFailure(Exception ex) {
-
-            }
-
-            @Override
-            public void onDataReceived(Map<String, Object> data) {
-
-            }
-        });
+        String walletAddress = walletHandler.createWallet(0.0);
+        String address = addressHandler.addAddress(Address.createEmptyInstance());
 
         user.put("wallet_address", walletAddress);
         user.put("address", address);

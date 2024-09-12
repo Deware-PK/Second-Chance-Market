@@ -1,5 +1,9 @@
 package com.github.dewarepk.model;
 
+/**
+ * A class to represent an address holder.
+ *
+ */
 public class Address {
 
     private final String address;
