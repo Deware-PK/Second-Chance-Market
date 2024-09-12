@@ -14,10 +14,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".UserAddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".WithdrawActivity"
             android:exported="false" />
         <activity
             android:name=".TopUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityAddressContainer"
             android:exported="false" />
         <activity
             android:name=".VerificationActivity"
@@ -32,7 +38,7 @@
             android:name=".StoreActivity"
             android:exported="false" />
         <activity
-            android:name=".LocationEditorActivity"
+            android:name=".LocationAddActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
