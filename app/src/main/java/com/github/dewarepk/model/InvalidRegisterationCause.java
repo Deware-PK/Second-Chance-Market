@@ -1,6 +1,6 @@
 package com.github.dewarepk.model;
 
-public enum InvalidCause {
+public enum InvalidRegisterationCause {
     EMPTY_DATA,
     EMAIL_MISMATCH,
     PASSWORD_UNMATCHED,

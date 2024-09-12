@@ -2,7 +2,6 @@ package com.github.dewarepk;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dewarepk.model.FirestoreCallback;
 import com.github.dewarepk.model.FirestoreHandler;
-import com.github.dewarepk.model.InvalidCause;
+import com.github.dewarepk.model.InvalidRegisterationCause;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.util.ValidateUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
             String password = passwordReg.getText().toString();
             String confirmedPassword = confirmedPasswordReg.getText().toString();
 
-            InvalidCause invalidCause = ValidateUtil.validateInput(firstName, lastName, email, username, password, confirmedPassword);
+            InvalidRegisterationCause invalidCause = ValidateUtil.validateRegisterInput(firstName, lastName, email, username, password, confirmedPassword);
 
             switch (invalidCause){
                 case EMPTY_DATA:
