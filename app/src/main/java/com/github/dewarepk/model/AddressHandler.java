@@ -15,7 +15,38 @@ public class AddressHandler {
      */
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
+    /**
+     * Simple add address method
+     *
+     * @param address
+     * @return
+     */
+    public String addAddress(Address address) {
+        return this.addAddress(address, new FirestoreCallback() {
+            @Override
+            public void onSuccess() {
+                // Do nothing
+            }
 
+            @Override
+            public void onFailure(Exception ex) {
+                // Do nothing
+            }
+
+            @Override
+            public void onDataReceived(Map<String, Object> data) {
+                // Do nothing
+            }
+        });
+    }
+
+    /**
+     * Add new address to the database
+     *
+     * @param address
+     * @param callback
+     * @return
+     */
     public String addAddress(Address address, FirestoreCallback callback) {
         final Map<String, Object> user = new HashMap<>();
         user.put("address", address.getAddress());
@@ -38,6 +69,12 @@ public class AddressHandler {
     }
 
 
+    /**
+     * get address by key
+     *
+     * @param key
+     * @return
+     */
     public CompletableFuture<Address> getAddress(String key) {
         CompletableFuture<Address> future = new CompletableFuture<>();
         DocumentReference addressRef = database.collection("addresses").document(key);
