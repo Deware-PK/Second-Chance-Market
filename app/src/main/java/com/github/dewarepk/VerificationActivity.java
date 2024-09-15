@@ -57,7 +57,7 @@ public class VerificationActivity extends AppCompatActivity {
 
 
         okayButton.setOnClickListener(view -> {
-            this.startActivity(new Intent(VerificationActivity.this, StoreActivity.class));
+            this.startActivity(new Intent(VerificationActivity.this, HomePageActivity.class));
             this.finish();
         });
 
