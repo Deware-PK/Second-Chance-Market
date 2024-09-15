@@ -8,6 +8,7 @@ import com.github.dewarepk.model.AddressHandler;
 import com.github.dewarepk.model.FirestoreCallback;
 import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.SecureAccess;
+import com.github.dewarepk.model.SimpleCallback;
 import com.github.dewarepk.model.WalletHandler;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -42,7 +43,7 @@ public final class SimpleUtil {
     /**
      * Get user's full name from database split by whitespace.
      */
-    public static String getUserFullName(Context context) {
+    public static void getUserFullName(Context context, SimpleCallback<String> callback) {
         final String[] firstName = new String[1];
         final String[] lastName = new String[1];
 
@@ -54,17 +55,18 @@ public final class SimpleUtil {
 
             @Override
             public void onFailure(Exception ex) {
-                // Do nothing
+                Log.d("SimpleUtil" , "Error getting user full name", ex);
             }
 
             @Override
             public void onDataReceived(Map<String, Object> data) {
                 firstName[0] = (String) data.get("firstName");
                 lastName[0] = (String) data.get("lastName");
+
+                callback.onDataReceived(firstName[0] + " " + lastName[0]);
             }
         });
 
-        return firstName[0] + " " + lastName[0];
     }
 
     /**
@@ -85,60 +87,53 @@ public final class SimpleUtil {
      * Get current user's wallet address.
      *
      * @param context
+     * @param callback
      * @return wallet address
      */
-    public static String getCurrentUserWallet(Context context) {
-        String[] walletAddress = new String[1];
+    public static void getCurrentUserWallet(Context context, SimpleCallback<String> callback) {
 
         database.getSpecificData(getCurrentUserId(context) , "wallet_address")
-                .thenAccept(value -> walletAddress[0] = (String) value);
+                .thenAccept(value -> callback.onDataReceived((String) value));
 
-        return walletAddress[0];
     }
 
     /**
      * Get current user's balance.
      *
      * @param context
-     * @return current user's balance
+     * @param callback
      */
-    public static Double getCurrentUserBalance(Context context) {
+    public static void getCurrentUserBalance(Context context, SimpleCallback<Double> callback) {
         WalletHandler walletHandler = new WalletHandler();
-        String walletAddress = getCurrentUserWallet(context);
-        double[] balance = new double[1];
+        getCurrentUserWallet(context, result ->
+                walletHandler.getBalance(result).thenAccept(callback::onDataReceived));
 
-        walletHandler.getBalance(walletAddress).thenAccept(amount -> balance[0] = amount);
-
-        return balance[0];
     }
 
     /**
      * Get current user's address key.
      *
      * @param context
-     * @return current user's address
+     * @param callback
      */
-    public static String getCurrentUserAddressKey(Context context) {
-        String[] addressKey = new String[1];
+    public static void getCurrentUserAddressKey(Context context, SimpleCallback<String> callback) {
 
-        database.getSpecificData(getCurrentUserId(context), "address").thenAccept(value -> addressKey[0] = (String) value);
+        database.getSpecificData(getCurrentUserId(context) , "address").thenAccept(value ->
+                callback.onDataReceived((String) value));
 
-        return addressKey[0];
     }
 
     /**
      * Get current user's address.
      *
      * @param context
+     * @param callback
      * @return current user's address
      */
-    public static Address getCurrentUserAddress(Context context) {
+    public static void getCurrentUserAddress(Context context, SimpleCallback<Address> callback) {
         AddressHandler addressHandler = new AddressHandler();
-        Address[] address = new Address[1];
-        addressHandler.getAddress(getCurrentUserAddressKey(context)).thenAccept(data -> {
-            address[0] = data;
-        });
 
-        return address[0];
+        getCurrentUserAddressKey(context, key ->
+                addressHandler.getAddress(key).thenAccept(callback::onDataReceived));
     }
 }

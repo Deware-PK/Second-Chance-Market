@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
 
-            this.startActivity(new Intent(this, TopUpActivity.class));
+            this.startActivity(new Intent(this, HomePageActivity.class));
             this.finish();
 
         }
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn(String email, String password) throws Exception {
         SecureAccess secureAccess = new SecureAccess(this, "UserPreferences");
 
-        Intent nextIntent = new Intent(this, TopUpActivity.class);
+        Intent nextIntent = new Intent(this, HomePageActivity.class);
 
         // Prevent empty input because it will crash the app.
         if (email.isEmpty() || password.isEmpty()) {

@@ -23,16 +23,10 @@
             android:name=".DetailProductActivity"
             android:exported="false" />
         <activity
-            android:name=".UserAddressActivity"
-            android:exported="false" />
-        <activity
             android:name=".WithdrawActivity"
             android:exported="false" />
         <activity
             android:name=".TopUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityAddressContainer"
             android:exported="false" />
         <activity
             android:name=".VerificationActivity"
@@ -44,10 +38,10 @@
             android:name=".ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".StoreActivity"
+            android:name=".LocationEditorActivity"
             android:exported="false" />
         <activity
-            android:name=".LocationAddActivity"
+            android:name=".HomePageActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
