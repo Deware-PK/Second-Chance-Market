@@ -12,6 +12,8 @@ import com.github.dewarepk.model.SimpleCallback;
 import com.github.dewarepk.model.WalletHandler;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -135,5 +137,16 @@ public final class SimpleUtil {
 
         getCurrentUserAddressKey(context, key ->
                 addressHandler.getAddress(key).thenAccept(callback::onDataReceived));
+    }
+
+    /**
+     * Convert List to ArrayList
+     *
+     * @param list
+     * @return
+     * @param <T>
+     */
+    public static <T> ArrayList<T> convertListToArrayList(List<T> list) {
+        return new ArrayList<>(list);
     }
 }

@@ -1,6 +1,7 @@
 package com.github.dewarepk.model.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.dewarepk.DetailProductActivity;
 import com.github.dewarepk.R;
 import com.github.dewarepk.model.ItemData;
 import com.squareup.picasso.Picasso;
@@ -39,12 +41,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ItemData currentItem = items.get(position);
 
         holder.titleTxt.setText(currentItem.getHeader());
-        holder.priceText.setText("Price: $" + currentItem.getPrice());
+        holder.priceText.setText("Price: ฿ู" + currentItem.getPrice());
 
         Picasso.get()
                 .load(currentItem.getPictureUrl())
                 .placeholder(R.drawable.shirt_holder)
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(aVoid -> {
+            Intent nextIntent = new Intent(context, DetailProductActivity.class);
+            nextIntent.putExtra("productHeader", currentItem.getHeader());
+            nextIntent.putExtra("productPictureUrl", currentItem.getPictureUrl());
+            nextIntent.putExtra("productPrice", currentItem.getPrice());
+            nextIntent.putExtra("productType", currentItem.getType());
+            nextIntent.putExtra("productDetails", currentItem.getDetails());
+            nextIntent.putExtra("productUuid", currentItem.getUuid().toString());
+            context.startActivity(nextIntent);
+        });
     }
 
     @Override

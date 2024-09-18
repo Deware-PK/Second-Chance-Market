@@ -18,5 +18,6 @@
     <color name="profile">#1194AA</color>
     <color name="home_20">#545fb7</color>
     <color name="cart_20">#545fb7</color>
+    <color name="lime">#32CD32</color>
     <color name="profile_20">#545fb7</color>
 </resources>

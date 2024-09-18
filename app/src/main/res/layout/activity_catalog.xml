@@ -66,7 +66,6 @@
                     android:layout_marginStart="26dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     android:src="@drawable/tshirt"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -92,7 +91,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="37dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/responsive" />
@@ -117,10 +115,10 @@
                     android:layout_height="164dp"
                     android:layout_marginStart="28dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/toolbox"
-                    tools:layout_editor_absoluteY="216dp" />
+                    tools:layout_editor_absoluteY="216dp"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/textTools"
@@ -142,10 +140,10 @@
                     android:layout_height="164dp"
                     android:layout_marginEnd="32dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/furniture"
-                    tools:layout_editor_absoluteY="216dp" />
+                    tools:layout_editor_absoluteY="216dp"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/textFurniture"
@@ -168,7 +166,6 @@
                     android:layout_marginStart="28dp"
                     android:layout_marginBottom="88dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imagetools"
@@ -195,7 +192,6 @@
                     android:layout_marginEnd="36dp"
                     android:layout_marginBottom="88dp"
                     android:background="@drawable/stork_button_topup"
-                    android:onClick="onImageClick"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imagefurniture"
@@ -317,4 +313,5 @@
 
                 android:textStyle="bold" />
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
