@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wave"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -69,23 +75,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/backgroundwallet"
-        android:layout_width="297dp"
-        android:layout_height="91dp"
-        android:background="@drawable/stork_button_topup"
+        android:layout_width="262dp"
+        android:layout_height="85dp"
+        android:background="@drawable/stroke_balance_box"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.037">
+
+
 
         <TextView
             android:id="@+id/textmywallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Wallet"
-            android:textSize="20dp"
+            android:text="Balance : "
+            android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -94,12 +104,14 @@
             android:id="@+id/textmoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$9999999"
-            android:textSize="20dp"
+            android:text="฿ 9999999"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.851"
+
             app:layout_constraintStart_toEndOf="@+id/textmywallet"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,31 +119,32 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonTop_up"
-        android:layout_width="131dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="72dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="76dp"
         android:background="@drawable/stork_button_topup"
+        android:backgroundTint="@color/white"
         android:text="Top up"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/buttonWithdraw"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonWithdraw"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonWithdraw"
-        android:layout_width="129dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="64dp"
+        android:layout_width="120dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="76dp"
         android:background="@drawable/stork_button_topup"
+        android:backgroundTint="@color/white"
         android:text="Withdraw"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/buttonTop_up"
         app:layout_constraintTop_toBottomOf="@+id/backgroundwallet" />
 
@@ -139,15 +152,14 @@
         android:id="@+id/appCompatButtonprofile"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="26dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/baseline_person_24"
+        android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My Profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backgroundwallet">
 
@@ -157,48 +169,29 @@
         android:id="@+id/appCompatButtonaddress"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="27dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/location_icon"
+        android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view4">
+        tools:layout_editor_absoluteY="591dp">
 
     </androidx.appcompat.widget.AppCompatButton>
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonstore"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonsignout"
-        tools:layout_editor_absoluteX="0dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButtonorder"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="27dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/box_icon"
+        android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3">
+        tools:layout_editor_absoluteY="543dp">
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -206,59 +199,29 @@
         android:id="@+id/appCompatButtonsignout"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="27dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/logout_icon"
+        android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="Sign out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view5">
+        tools:layout_editor_absoluteY="639dp">
 
     </androidx.appcompat.widget.AppCompatButton>
-
-    <View
-        android:id="@+id/view5"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:background="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonaddress"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:background="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonorder"
-        tools:layout_editor_absoluteX="0dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/appCompatButtonstore"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="27dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/store_icon"
+        android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My store"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2"></androidx.appcompat.widget.AppCompatButton>
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:background="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonprofile" />
+        tools:layout_editor_absoluteY="495dp"></androidx.appcompat.widget.AppCompatButton>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="410dp"
@@ -355,7 +318,6 @@
 
                 android:textStyle="bold" />
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
