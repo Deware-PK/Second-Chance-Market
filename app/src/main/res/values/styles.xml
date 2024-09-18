@@ -1,0 +1,9 @@
+<resources>
+    <!-- Custom Dialog Theme -->
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#FF0000</item> <!-- สีของปุ่ม -->
+        <item name="android:windowBackground">@drawable/custom_dialog_bg</item> <!-- กำหนด background -->
+        <item name="android:textColorPrimary">#000000</item> <!-- สีข้อความหลัก -->
+        <item name="android:backgroundDimAmount">0.4</item> <!-- ความเข้มของเงาด้านหลัง -->
+    </style>
+</resources>
