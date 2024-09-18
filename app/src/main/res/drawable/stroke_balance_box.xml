@@ -18,6 +18,6 @@
         android:right="8dp"
         android:bottom="8dp" />
 
-    <solid android:color="@color/light_purple_box">    </solid>
+    <solid android:color="@color/home_20">    </solid>
 
 </shape>
