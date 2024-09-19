@@ -1,9 +1,11 @@
 package com.github.dewarepk;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -14,11 +16,15 @@ import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
+import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
+
+import java.util.function.Predicate;
 
 public class TopUpActivity extends AppCompatActivity {
 
     private EditText totalTopup;
+    private boolean isFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +66,24 @@ public class TopUpActivity extends AppCompatActivity {
         // Handle confirmation button click
         confirmButtonTopup.setOnClickListener(aVoid -> {
             handleTopUpConfirmation(userId);
+            TimeUtil.loadDataDialog(this, isFinish, 1000);
+            TimeUtil.delayExecution(1500, () -> {
+                isFinish = true;
+                Toast.makeText(TopUpActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(TopUpActivity.this, ProfileActivity.class));
+                finish();
+            });
         });
+
+
+
     }
 
     private void setButtonListener(AppCompatButton button, String amount) {
         button.setOnClickListener(v -> totalTopup.setText(amount));
     }
+
+
 
     private void handleTopUpConfirmation(String userId) {
         try {
@@ -77,5 +95,11 @@ public class TopUpActivity extends AppCompatActivity {
             // Handle invalid input (not a valid number)
             totalTopup.setError("Please enter a valid amount");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TimeUtil.stopTask();
     }
 }

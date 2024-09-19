@@ -24,7 +24,6 @@ public final class ItemPool {
         items.add(item);
     }
 
-
     public void deleteItem(UUID uuid) {
         for (ItemData item : items) {
             if (item.getUuid().equals(uuid)) {
@@ -43,6 +42,18 @@ public final class ItemPool {
         return Collections.unmodifiableList(items);
     }
 
+    public List<ItemData> getItemByType(ItemType type) {
+        List<ItemData> byTypes = new ArrayList<>();
+
+        for (ItemData item : this.items) {
+            if (item.getType().equals(type)) {
+                byTypes.add(item);
+            }
+        }
+
+        return byTypes;
+    }
+
 
     public static ItemPool getInstance() {
         return instance;
@@ -50,7 +61,7 @@ public final class ItemPool {
 
     private void registerDefault() {
         items.add(new ItemData("0",
-                "shirt_holder",
+                "https://clipart-library.com/image_gallery2/Knife-PNG-Picture.png",
                 5,
                 ItemType.CLOTHE,
                 "Line1",

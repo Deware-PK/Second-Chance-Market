@@ -7,9 +7,10 @@
     android:background="#FFFFFF">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/wave"/>
+        android:background="@drawable/wave" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -104,7 +105,7 @@
             android:id="@+id/textmoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="฿ 9999999"
+            android:text="฿ -1"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -158,6 +159,7 @@
         android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My Profile"
+        app:layout_constraintBottom_toTopOf="@+id/appCompatButtonstore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,9 +176,10 @@
         android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="Address"
+        app:layout_constraintBottom_toTopOf="@+id/appCompatButtonsignout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="591dp">
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonorder">
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -189,9 +192,11 @@
         android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My order"
+        app:layout_constraintBottom_toTopOf="@+id/appCompatButtonaddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="543dp">
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonstore"
+        tools:ignore="MissingConstraints">
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -206,7 +211,7 @@
         android:text="Sign out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="639dp">
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButtonaddress">
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -214,16 +219,21 @@
         android:id="@+id/appCompatButtonstore"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="495dp"
         android:background="@color/white"
         android:drawableLeft="@drawable/store_icon"
         android:orientation="horizontal"
         android:paddingEnd="180dp"
         android:text="My store"
+        app:layout_constraintBottom_toTopOf="@+id/appCompatButtonorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="495dp"></androidx.appcompat.widget.AppCompatButton>
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout">
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="410dp"
         android:layout_height="70dp"
         android:background="@drawable/round_back_purple"

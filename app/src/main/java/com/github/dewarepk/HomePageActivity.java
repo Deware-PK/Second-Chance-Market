@@ -31,7 +31,11 @@ public class HomePageActivity extends AppCompatActivity {
 
         LinearLayout profileButton = this.findViewById(R.id.me_btn);
 
-        profileButton.setOnClickListener(aVoid -> this.startActivity(new Intent(HomePageActivity.this, TopUpActivity.class)));
+        profileButton.setOnClickListener(aVoid -> {
+            this.startActivity(new Intent(HomePageActivity.this, ProfileActivity.class));
+            this.finish();
+        });
+
 
         ItemAdapter adapter = new ItemAdapter(this, SimpleUtil.convertListToArrayList(ItemPool.getInstance().getItems()));
         RecyclerView recyclerView = this.findViewById(R.id.recommendView);
