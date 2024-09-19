@@ -4,14 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.util.Patterns;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.identity.cbor.Simple;
 import com.github.dewarepk.LoginActivity;
 import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.InvalidAddressCause;
 import com.github.dewarepk.model.InvalidRegisterationCause;
 import com.github.dewarepk.model.SecureAccess;
+import com.github.dewarepk.model.WalletMode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -132,4 +135,5 @@ public final class ValidateUtil {
         String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$";
         return password.matches(passwordPattern);
     }
+
 }

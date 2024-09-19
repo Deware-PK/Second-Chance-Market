@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class WalletHandler {
 
@@ -88,6 +89,12 @@ public class WalletHandler {
         return future;
     }
 
+    public void updateBalance(String userId, double balance, WalletMode mode) {
+        this.updateBalance(userId, balance, mode, blank -> {
+            // Leave it blank
+        });
+    }
+
     /**
      * Update user's wallet balance
      *
@@ -95,7 +102,7 @@ public class WalletHandler {
      * @param balance
      * @param mode
      */
-    public void updateBalance(String userId, double balance, WalletMode mode) {
+    public void updateBalance(String userId, double balance, WalletMode mode, Consumer<Boolean> consumer) {
         FirestoreHandler firestoreHandler = new FirestoreHandler();
         WalletHandler walletHandler = new WalletHandler();
         double[] newBalance = new double[1];
@@ -106,6 +113,7 @@ public class WalletHandler {
             walletHandler.getBalance((String) walletAddress).thenAccept(amount -> {
                 switch (mode) {
                     case DEPOSIT:
+                        consumer.accept(true);
                         newBalance[0] = amount + balance;
                         map.put("balance", newBalance[0]);
                         firestoreHandler.updateData("wallets", (String) walletAddress, map);
@@ -114,9 +122,12 @@ public class WalletHandler {
 
                     case WITHDRAW:
 
-                        if (amount < balance)
+                        if (amount < balance) {
+                            consumer.accept(false);
                             return;
+                        }
 
+                        consumer.accept(true);
                         newBalance[0] = amount - balance;
                         map.put("balance", newBalance[0]);
                         firestoreHandler.updateData("wallets", (String) walletAddress, map);

@@ -20,38 +20,37 @@ public final class TimeUtil {
         new Handler(Looper.getMainLooper()).postDelayed(task, delayMillis);
     }
 
-    public static void loadDataDialog(Context context, boolean condition, long millis) {
+    public static StylishAlertDialog loadDataDialog(Context context, boolean condition, long millis) {
         StylishAlertDialog progressionDialog = new StylishAlertDialog(context, StylishAlertDialog.PROGRESS);
         progressionDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         progressionDialog.setTitleText("Loading")
                 .setCancellable(false)
-                .setCancelledOnTouchOutside(false)
-                .show();
+                .setCancelledOnTouchOutside(false);
 
-        // สร้าง Handler และ Runnable เพื่อใช้ในการตรวจสอบเงื่อนไข
-        handler = new Handler();
-        runnable = new Runnable() {
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                // ตรวจสอบเงื่อนไข
                 if (!condition) {
-                    Log.d("Dialog", "Loading!");
-                    // เรียก Runnable อีกครั้งหลังจาก 1 วินาที
+                    Log.d("Dialog", "Running Task!");
+                    if (!progressionDialog.isShowing()) {
+                        handler.removeCallbacks(this);
+                        progressionDialog.dismissWithAnimation();
+                        return;
+                    }
                     handler.postDelayed(this, millis);
                 } else {
-                    // เมื่อเงื่อนไขเป็นจริงให้หยุด Runnable และปิด dialog
-                    handler.removeCallbacks(runnable);
+                    handler.removeCallbacks(this);
                     progressionDialog.dismissWithAnimation();
                     Log.d("Dialog", "Finish Loaded!");
                 }
             }
         };
-
-        // เริ่ม Runnable ครั้งแรก
+        progressionDialog.show();
         handler.post(runnable);
+        Log.d("Dialog", "Executed!");
+
+        return progressionDialog;  // Return the dialog for management
     }
 
-    public static void stopTask() {
-        handler.removeCallbacks(runnable);
-    }
 }
