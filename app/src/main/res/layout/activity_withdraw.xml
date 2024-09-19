@@ -7,6 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".WithdrawActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wave"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="120dp">
+
+
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/bank_account_spinner"
+        android:layout_width="358dp"
+        android:layout_height="56dp"
+        android:background="@drawable/stroke_text"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/AccoutNumberText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/withdraw_textView"
+        app:layout_constraintVertical_bias="0.827" />
+
     <ImageView
         android:id="@+id/return_back_topup"
         android:layout_width="59dp"
@@ -43,13 +68,14 @@
         android:maxLines="1"
         android:paddingStart="20dp"
         android:paddingEnd="30dp"
+
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
+        app:layout_constraintVertical_bias="0.331" />
 
     <EditText
         android:id="@+id/withdrawText"
@@ -60,8 +86,11 @@
         android:maxLines="1"
         android:paddingStart="20dp"
         android:paddingEnd="30dp"
-        android:hint="Amount"
+        android:hint="THB"
+        android:textAlignment="viewEnd"
         android:textSize="16sp"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -83,19 +112,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/withdrawText"
         app:layout_constraintVertical_bias="0.26" />
-
-    <Spinner
-        android:id="@+id/bank_account_spinner"
-        android:layout_width="358dp"
-        android:layout_height="56dp"
-        android:background="@drawable/stroke_text"
-        android:padding="10dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/AccoutNumberText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/withdraw_textView"
-        app:layout_constraintVertical_bias="0.827" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
