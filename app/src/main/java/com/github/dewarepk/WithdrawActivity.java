@@ -1,6 +1,8 @@
 package com.github.dewarepk;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,10 +17,16 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
+import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
+import com.marsad.stylishdialogs.StylishAlertDialog;
 
 
 public class WithdrawActivity extends AppCompatActivity {
+
+    private Runnable runnable;
+    private Handler handler;
+    private boolean isFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +61,14 @@ public class WithdrawActivity extends AppCompatActivity {
                 confirmButton.setOnClickListener(l -> {
                     double withdrawAmount = Double.parseDouble(withdrawEditText.getText().toString());
                     walletHandler.updateBalance(userId, withdrawAmount, WalletMode.WITHDRAW);
-                    Toast.makeText(WithdrawActivity.this, withdrawAmount + "฿ has been transfer to " + selectedItem, Toast.LENGTH_SHORT).show();
-                    //WithdrawActivity.this.startActivity();
-                    //WithdrawActivity.this.finish();
+
+                    TimeUtil.loadDataDialog(WithdrawActivity.this, isFinish, 1500);
+                    TimeUtil.delayExecution(1500, () -> {
+                        isFinish = true;
+                        Toast.makeText(WithdrawActivity.this, withdrawAmount + "฿ has been transfer to " + selectedItem, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(WithdrawActivity.this, ProfileActivity.class));
+                        finish();
+                    });
                 });
                 
             }
@@ -66,4 +79,5 @@ public class WithdrawActivity extends AppCompatActivity {
             }
         });
     }
+
 }

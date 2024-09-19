@@ -3,7 +3,9 @@ package com.github.dewarepk;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.github.dewarepk.model.ItemPool;
 import com.google.android.material.button.MaterialButton;
+import com.marsad.stylishdialogs.StylishAlertDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
@@ -59,11 +62,39 @@ public class DetailProductActivity extends AppCompatActivity {
 
 
         buyNowButton.setOnClickListener(aVoid -> {
-            this.startActivity(new Intent(this, HomePageActivity.class));
-            this.finish();
-            ItemPool.getInstance().deleteItem(productUuid);
 
-
+            showConfirmationDialog(productUuid);
         });
+    }
+
+    private void showConfirmationDialog(UUID productUuid) {
+
+
+        StylishAlertDialog dialog = new StylishAlertDialog(this, StylishAlertDialog.WARNING)
+                .setTitleText("Are you sure?")
+                .setContentText("Your balance will be deducted automatically.")
+                .setConfirmText("Yes, Buy it!")
+                .setConfirmClickListener(new StylishAlertDialog.OnStylishClickListener() {
+                    @Override
+                    public void onClick(StylishAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+
+                        // Execute code after confirmation
+                        startActivity(new Intent(DetailProductActivity.this, HomePageActivity.class));
+                        finish();
+                        ItemPool.getInstance().deleteItem(productUuid);
+                    }
+                })
+                .setCancelButton("Cancel", new StylishAlertDialog.OnStylishClickListener() {
+                    @Override
+                    public void onClick(StylishAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        // No action on cancel, simply dismiss
+                    }
+                });
+
+        // แสดง dialog ทุกครั้งที่ฟังก์ชันนี้ถูกเรียก
+        dialog.setCancelledOnTouchOutside(false);
+        dialog.show();
     }
 }

@@ -20,6 +20,7 @@ recyclerviewSelection = "1.1.0"
 securityCrypto = "1.1.0-alpha06"
 recyclerview = "1.3.2"
 identityJvm = "202408.1"
+stylishdialogs = "1.0.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -36,6 +37,7 @@ material-v190 = { module = "com.google.android.material:material", version.ref =
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 recyclerview-selection = { module = "androidx.recyclerview:recyclerview-selection", version.ref = "recyclerviewSelection" }
 security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
+stylishdialogs = { module = "com.github.MarsadMaqsood:StylishDialogs", version.ref = "stylishdialogs" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
