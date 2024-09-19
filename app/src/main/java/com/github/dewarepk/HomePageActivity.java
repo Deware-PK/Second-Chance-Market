@@ -29,7 +29,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         SimpleUtil.getUserFullName(this.getApplicationContext(), fullNameDisplay::setText);
 
-        LinearLayout profileButton = this.findViewById(R.id.me_btn);
+        LinearLayout profileButton = this.findViewById(R.id.profileBtn);
 
         profileButton.setOnClickListener(aVoid -> {
             this.startActivity(new Intent(HomePageActivity.this, ProfileActivity.class));
@@ -38,7 +38,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
         ItemAdapter adapter = new ItemAdapter(this, SimpleUtil.convertListToArrayList(ItemPool.getInstance().getItems()));
-        RecyclerView recyclerView = this.findViewById(R.id.recommendView);
+        RecyclerView recyclerView = this.findViewById(R.id.view_holder);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(adapter);
 

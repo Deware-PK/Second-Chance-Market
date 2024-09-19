@@ -1,10 +1,8 @@
 package com.github.dewarepk;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,14 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.github.dewarepk.util.SimpleUtil;
+import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
 import com.marsad.stylishdialogs.StylishAlertDialog;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView balance;
-    private Runnable runnable;
-    private Handler handler;
+    private StylishAlertDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,12 +30,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         ValidateUtil.checkIntegrity(this.getApplicationContext() , this);
 
-        this.loadDialog();
-
         AppCompatButton topupButton = this.findViewById(R.id.buttonTop_up);
         AppCompatButton withdrawButton = this.findViewById(R.id.buttonWithdraw);
 
         this.balance = this.findViewById(R.id.textmoney);
+
+        dialog = TimeUtil.loadDataDialog(this, balance.getText().toString().equals("฿ -1"), 1000);
+
         SimpleUtil.getCurrentUserBalance(this.getApplicationContext(), amount -> {
             this.balance.setText("฿ " + amount);
         });
@@ -49,41 +50,28 @@ public class ProfileActivity extends AppCompatActivity {
             this.startActivity(new Intent(ProfileActivity.this , WithdrawActivity.class));
             this.finish();
         });
-    }
 
-    private void loadDialog() {
-        StylishAlertDialog progessionDialog = new StylishAlertDialog(this, StylishAlertDialog.PROGRESS);
-        progessionDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        progessionDialog.setTitleText("Loading")
-                .setCancellable(false)
-                .setCancelledOnTouchOutside(false)
-                .show();
+        ImageView refresh = this.findViewById(R.id.refresh);
 
-        handler = new Handler();
-        runnable = new Runnable() {
+        refresh.setOnClickListener(aVoid -> {
 
-            @Override
-            public void run() {
+            this.balance.setText("฿ -1");
 
-                if (balance.getText().toString().equals("฿ -1")) {
-                    Log.d("Dialog", "Loading!");
-                    // เรียก Runnable อีกครั้งหลังจาก 1 วินาที
-                    handler.postDelayed(this, 1000);
-                } else {
-                    handler.removeCallbacks(runnable);
-                    progessionDialog.dismissWithAnimation();
-                    Log.d("Dialog", "Finish Loaded!");
-                }
-            }
-        };
+            SimpleUtil.getCurrentUserBalance(this.getApplicationContext(), amount -> {
+                this.balance.setText("฿ " + amount);
 
-        // เรียก Runnable ครั้งแรก
-        handler.post(runnable);
+            });
+
+            dialog = TimeUtil.loadDataDialog(this, this.balance.getText().toString().equals("฿ -1"), 1000);
+
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacks(runnable);
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 }

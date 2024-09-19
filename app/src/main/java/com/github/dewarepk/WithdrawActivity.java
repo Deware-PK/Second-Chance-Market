@@ -2,11 +2,11 @@ package com.github.dewarepk;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,13 +19,12 @@ import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
 import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
-import com.marsad.stylishdialogs.StylishAlertDialog;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class WithdrawActivity extends AppCompatActivity {
 
-    private Runnable runnable;
-    private Handler handler;
     private boolean isFinish;
 
     @Override
@@ -60,15 +59,25 @@ public class WithdrawActivity extends AppCompatActivity {
 
                 confirmButton.setOnClickListener(l -> {
                     double withdrawAmount = Double.parseDouble(withdrawEditText.getText().toString());
-                    walletHandler.updateBalance(userId, withdrawAmount, WalletMode.WITHDRAW);
 
-                    TimeUtil.loadDataDialog(WithdrawActivity.this, isFinish, 1500);
-                    TimeUtil.delayExecution(1500, () -> {
-                        isFinish = true;
-                        Toast.makeText(WithdrawActivity.this, withdrawAmount + "฿ has been transfer to " + selectedItem, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(WithdrawActivity.this, ProfileActivity.class));
-                        finish();
+
+                    walletHandler.updateBalance(userId, withdrawAmount, WalletMode.WITHDRAW, isSuccessful -> {
+                        if (!isSuccessful) {
+                            Toast.makeText(WithdrawActivity.this, "Insufficient balance", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            TimeUtil.loadDataDialog(WithdrawActivity.this, isFinish, 1500);
+                            TimeUtil.delayExecution(1500, () -> {
+                                isFinish = true;
+                                Toast.makeText(WithdrawActivity.this, withdrawAmount + "฿ has been transfer to " + selectedItem, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(WithdrawActivity.this, ProfileActivity.class));
+                                finish();
+                            });
+                        }
                     });
+
+
                 });
                 
             }
@@ -77,6 +86,12 @@ public class WithdrawActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // Do nothing
             }
+        });
+
+        ImageView returnButton = this.findViewById(R.id.return_back_withdraw);
+        returnButton.setOnClickListener(aVoid -> {
+            startActivity(new Intent(WithdrawActivity.this, ProfileActivity.class));
+            finish();
         });
     }
 

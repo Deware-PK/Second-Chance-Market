@@ -18,13 +18,15 @@ import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
 import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
+import com.marsad.stylishdialogs.StylishAlertDialog;
 
 import java.util.function.Predicate;
 
 public class TopUpActivity extends AppCompatActivity {
 
     private EditText totalTopup;
-    private boolean isFinish;
+    private boolean isFinish = false;
+    private StylishAlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class TopUpActivity extends AppCompatActivity {
         totalTopup = findViewById(R.id.Totaltopup);
         AppCompatButton confirmButtonTopup = findViewById(R.id.confirm_button_topup);
 
+
         // Set button listeners using helper method
         setButtonListener(buttonOneHundred, "100");
         setButtonListener(buttonTwoHundred, "200");
@@ -63,19 +66,28 @@ public class TopUpActivity extends AppCompatActivity {
         setButtonListener(buttonOneThousand, "1000");
         setButtonListener(buttonTwoThousand, "2000");
 
+
         // Handle confirmation button click
         confirmButtonTopup.setOnClickListener(aVoid -> {
             handleTopUpConfirmation(userId);
-            TimeUtil.loadDataDialog(this, isFinish, 1000);
+            dialog = TimeUtil.loadDataDialog(this, isFinish, 1000);
+
             TimeUtil.delayExecution(1500, () -> {
                 isFinish = true;
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismissWithAnimation();  // Dismiss dialog before finishing the activity
+                }
+
                 Toast.makeText(TopUpActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(TopUpActivity.this, ProfileActivity.class));
-                finish();
+                finish();  // Call finish after dismissing the dialog
             });
         });
 
-
+        returnBackTopup.setOnClickListener(aVoid -> {
+            startActivity(new Intent(TopUpActivity.this, ProfileActivity.class));
+            finish();
+        });
 
     }
 
@@ -90,6 +102,10 @@ public class TopUpActivity extends AppCompatActivity {
             // Handle the confirmation action
             double total = Double.parseDouble(totalTopup.getText().toString());
             WalletHandler walletHandler = new WalletHandler();
+            if (total > 1000000) {
+                Toast.makeText(this.getApplicationContext(), "You've reached maximum", Toast.LENGTH_SHORT).show();
+                return;
+            }
             walletHandler.updateBalance(userId, total, WalletMode.DEPOSIT);
         } catch (NumberFormatException e) {
             // Handle invalid input (not a valid number)
@@ -100,6 +116,11 @@ public class TopUpActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        TimeUtil.stopTask();
+        // Dismiss the dialog if it's still showing
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+
+        isFinish = true;
     }
 }
