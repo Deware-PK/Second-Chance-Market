@@ -22,7 +22,6 @@
     <color name="lime">#32CD32</color>
     <color name="profile_20">#545fb7</color>
     <color name="light_purple_box">#e7dcf7</color>
-    <color name="alice">#F5FFFA</color>
-
+    <color name="light_gray">#DCDCDC</color>
 
 </resources>
