@@ -21,6 +21,7 @@ import com.github.dewarepk.util.ValidateUtil;
 
 public class HomePageActivity extends AppCompatActivity {
 
+
     private int selectedTab = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
