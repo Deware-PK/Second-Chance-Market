@@ -130,5 +130,61 @@ public final class ItemPool {
                 "Hello",
                 "Line 2 asdasdasdasd",
                 "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
+        items.add(new ItemData("1",
+                "https://play-lh.googleusercontent.com/QPo012nDmGHkDLe7MtXkP4J7y_W_MZ8VgfyY6Iqx79ePl_n-0o6cDFLKI0ATdMEqea2Gnq_WtQEY32U5Zg",
+                5,
+                ItemType.CLOTHE,
+                "Hello",
+                "Line 2 asdasdasdasd",
+                "Line 3"));
     }
 }
