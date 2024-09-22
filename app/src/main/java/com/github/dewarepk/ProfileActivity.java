@@ -7,17 +7,20 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.github.dewarepk.model.FirestoreHandler;
+import com.github.dewarepk.model.SecureAccess;
+import com.github.dewarepk.model.widget.CustomActivity;
+import com.github.dewarepk.model.widget.NavigationProperty;
 import com.github.dewarepk.util.SimpleUtil;
 import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.marsad.stylishdialogs.StylishAlertDialog;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends CustomActivity {
 
     private TextView balance;
     private StylishAlertDialog dialog;
@@ -30,8 +33,17 @@ public class ProfileActivity extends AppCompatActivity {
 
         ValidateUtil.checkIntegrity(this.getApplicationContext() , this);
 
+        this.setDefaultTab(3);
+
+        this.makeNavigationBar();
+
         AppCompatButton topupButton = this.findViewById(R.id.buttonTop_up);
         AppCompatButton withdrawButton = this.findViewById(R.id.buttonWithdraw);
+        AppCompatButton addressEditorButton = this.findViewById(R.id.address_button);
+        AppCompatButton signOutButton = this.findViewById(R.id.sign_out_button);
+        TextView fullNameDisplay = this.findViewById(R.id.profile_name);
+
+        SimpleUtil.getUserFullName(this.getApplicationContext(), fullNameDisplay::setText);
 
         this.balance = this.findViewById(R.id.textmoney);
 
@@ -65,6 +77,26 @@ public class ProfileActivity extends AppCompatActivity {
             dialog = TimeUtil.loadDataDialog(this, this.balance.getText().toString().equals("฿ -1"), 1000);
 
         });
+
+        addressEditorButton.setOnClickListener(aVoid -> {
+            this.startActivity(new Intent(ProfileActivity.this , LocationEditorActivity.class));
+            this.finish();
+        });
+
+        signOutButton.setOnClickListener(aVoid -> {
+            try {
+                SecureAccess secureAccess = new SecureAccess(this, "UserPreferences");
+                secureAccess.removeValue("userId");
+                secureAccess.removeValue("isLoggedIn");
+                FirebaseAuth.getInstance().signOut();
+
+                this.startActivity(new Intent(ProfileActivity.this , LoginActivity.class));
+                this.finish();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+        });
     }
 
     @Override
@@ -73,5 +105,19 @@ public class ProfileActivity extends AppCompatActivity {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
+    }
+
+    @Override
+    public NavigationProperty getProperties() {
+        return new NavigationProperty()
+                .setHomeButton(this.findViewById(R.id.homeBtn))
+                .setCartButton(this.findViewById(R.id.cartBtn))
+                .setProfileButton(this.findViewById(R.id.profileBtn))
+                .setHomeImage(this.findViewById(R.id.homeImage))
+                .setCartImage(this.findViewById(R.id.cartImage))
+                .setProfileImage(this.findViewById(R.id.profileImage))
+                .setHomeText(this.findViewById(R.id.homeTxt))
+                .setCartText(this.findViewById(R.id.CartTxt))
+                .setProfileText(this.findViewById(R.id.profileTxt));
     }
 }

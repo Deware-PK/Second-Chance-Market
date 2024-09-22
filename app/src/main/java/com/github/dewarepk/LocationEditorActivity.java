@@ -1,5 +1,6 @@
 package com.github.dewarepk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -100,6 +101,8 @@ public class LocationEditorActivity extends AppCompatActivity{
 
             firestoreHandler.updateData("addresses", addressKey[0] , map);
             Toast.makeText(LocationEditorActivity.this.getApplicationContext(), "Saved!", Toast.LENGTH_SHORT).show();
+            this.startActivity(new Intent(LocationEditorActivity.this , ProfileActivity.class));
+            this.finish();
         });
 
 
