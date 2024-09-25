@@ -20,6 +20,9 @@
             android:name=".MyCartActivity"
             android:exported="false" />
         <activity
+            android:name=".CategoriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
@@ -27,6 +30,12 @@
             android:exported="false" />
         <activity
             android:name=".DetailProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyStoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddProductActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

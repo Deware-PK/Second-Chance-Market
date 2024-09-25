@@ -16,14 +16,14 @@ import com.github.dewarepk.model.widget.NavigationProperty;
 import com.github.dewarepk.util.SimpleUtil;
 import com.github.dewarepk.util.ValidateUtil;
 
-public class HomePageActivity extends CustomActivity {
+public class CategoriesActivity extends CustomActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_catalog);
 
         ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
 
@@ -31,36 +31,25 @@ public class HomePageActivity extends CustomActivity {
         this.makeNavigationBar();
 
         /** Properties **/
-        ImageView clothesButton = this.findViewById(R.id.clothes_btn);
-        ImageView digitalButton = this.findViewById(R.id.digital_btn);
-        ImageView toolButton = this.findViewById(R.id.tool_btn);
-        ImageView furnitureButton = this.findViewById(R.id.furniture_btn);
-        ImageView moreButton = this.findViewById(R.id.more_btn);
-
-        TextView fullNameDisplay = this.findViewById(R.id.fullname_display);
-
-        SimpleUtil.getUserFullName(this.getApplicationContext(), fullNameDisplay::setText);
+        ImageView clothesButton = this.findViewById(R.id.image_tshirt);
+        ImageView digitalButton = this.findViewById(R.id.image_computer);
+        ImageView toolButton = this.findViewById(R.id.image_tools);
+        ImageView furnitureButton = this.findViewById(R.id.image_furniture);
+        ImageView toyButton = this.findViewById(R.id.image_toys);
+        ImageView instrumentButton = this.findViewById(R.id.image_music);
 
         this.catalogClickEvent(clothesButton, "CLOTHE");
         this.catalogClickEvent(digitalButton, "DIGITAL");
         this.catalogClickEvent(toolButton, "TOOL");
         this.catalogClickEvent(furnitureButton, "FURNITURE");
-        //this.catalogClickEvent(moreButton, "CUSTOMIZE");
+        this.catalogClickEvent(toyButton, "TOY");
+        this.catalogClickEvent(instrumentButton, "INSTRUMENT");
 
-        moreButton.setOnClickListener(l -> {
-            this.startActivity(new Intent(this, CategoriesActivity.class));
-            this.finish();
-        });
-
-        ItemAdapter adapter = new ItemAdapter(this, SimpleUtil.convertListToArrayList(ItemPool.getInstance().getItems()));
-        RecyclerView recyclerView = this.findViewById(R.id.view_holder);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(adapter);
     }
 
     private void catalogClickEvent(ImageView buttonImage, String type) {
         buttonImage.setOnClickListener(aVoid -> {
-            Intent nextPageOfSearch = new Intent(HomePageActivity.this, SearchPageActivity.class);
+            Intent nextPageOfSearch = new Intent(CategoriesActivity.this, SearchPageActivity.class);
             nextPageOfSearch.putExtra("type", type);
             this.startActivity(nextPageOfSearch);
         });
