@@ -9,7 +9,7 @@
     android:elevation="3dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/item_showcase"
         android:layout_width="175dp"
         android:layout_height="155dp"
         android:layout_marginStart="8dp"
@@ -29,11 +29,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/item_showcase"
         android:background="@drawable/white_bg"/>
 
     <TextView
-        android:id="@+id/titleTxt"
+        android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -51,6 +51,6 @@
         android:textSize="12sp"
         android:text="Price $"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titleTxt"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
+        app:layout_constraintStart_toStartOf="@+id/item_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

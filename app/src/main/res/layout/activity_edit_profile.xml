@@ -24,7 +24,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="-89dp"
+                tools:layout_editor_absoluteY="0dp">
 
                 <TextView
                     android:id="@+id/topeditprofile"
@@ -47,23 +49,24 @@
                     android:layout_marginBottom="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.491"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/topeditprofile"
+                    app:layout_constraintVertical_bias="0.348"
                     app:srcCompat="@drawable/profile" />
 
                 <TextView
                     android:id="@+id/verified"
-                    android:layout_width="249dp"
-                    android:layout_height="162dp"
-                    android:layout_marginTop="20dp"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageprofile"
-                    app:layout_constraintHorizontal_bias="0.513"
-                    app:layout_constraintStart_toStartOf="@+id/imageprofile"
-                    app:layout_constraintTop_toBottomOf="@+id/imageprofile"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:layout_width="114dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="148dp"
+                    android:gravity="center"
+                    android:text="Verified"
+                    android:textColor="@color/lime"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageprofile" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,11 +111,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/ChangepasswordButton"
+        android:id="@+id/change_password_button"
         android:layout_width="355dp"
         android:layout_height="68dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="28dp"
         android:background="@drawable/round_back_purple_15"
         android:text="Change Password"
@@ -128,7 +131,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/appCompatButton"
+        android:id="@+id/save_profile_button"
         android:layout_width="355dp"
         android:layout_height="68dp"
         android:layout_marginBottom="60dp"
@@ -142,8 +145,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/ChangepasswordButton"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintTop_toBottomOf="@+id/change_password_button"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textemail"

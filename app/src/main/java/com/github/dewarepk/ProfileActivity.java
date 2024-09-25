@@ -41,6 +41,8 @@ public class ProfileActivity extends CustomActivity {
         AppCompatButton withdrawButton = this.findViewById(R.id.buttonWithdraw);
         AppCompatButton addressEditorButton = this.findViewById(R.id.address_button);
         AppCompatButton signOutButton = this.findViewById(R.id.sign_out_button);
+        AppCompatButton profileButton = this.findViewById(R.id.my_profile_button);
+
         TextView fullNameDisplay = this.findViewById(R.id.profile_name);
 
         SimpleUtil.getUserFullName(this.getApplicationContext(), fullNameDisplay::setText);
@@ -60,6 +62,11 @@ public class ProfileActivity extends CustomActivity {
 
         withdrawButton.setOnClickListener(l -> {
             this.startActivity(new Intent(ProfileActivity.this , WithdrawActivity.class));
+            this.finish();
+        });
+
+        profileButton.setOnClickListener(l -> {
+            this.startActivity(new Intent(ProfileActivity.this ,EditProfileActivity.class));
             this.finish();
         });
 

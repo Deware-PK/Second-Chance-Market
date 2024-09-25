@@ -20,8 +20,6 @@ import com.github.dewarepk.model.WalletMode;
 import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 public class WithdrawActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class WithdrawActivity extends AppCompatActivity {
         WalletHandler walletHandler = new WalletHandler();
         Spinner spinner = findViewById(R.id.bank_account_spinner);
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.bank_accounts)));
-        AppCompatButton confirmButton = this.findViewById(R.id.confirm_button_topup);
+        AppCompatButton confirmButton = this.findViewById(R.id.order_now_button);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

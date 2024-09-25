@@ -1,6 +1,5 @@
 package com.github.dewarepk;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -12,15 +11,12 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import androidx.activity.EdgeToEdge;
 
-import com.github.dewarepk.model.FirestoreHandler;
 import com.github.dewarepk.model.SecureAccess;
 import com.github.dewarepk.model.WalletHandler;
 import com.github.dewarepk.model.WalletMode;
 import com.github.dewarepk.util.TimeUtil;
 import com.github.dewarepk.util.ValidateUtil;
 import com.marsad.stylishdialogs.StylishAlertDialog;
-
-import java.util.function.Predicate;
 
 public class TopUpActivity extends AppCompatActivity {
 
@@ -55,7 +51,7 @@ public class TopUpActivity extends AppCompatActivity {
         AppCompatButton buttonOneThousand = findViewById(R.id.button_1000);
         AppCompatButton buttonTwoThousand = findViewById(R.id.button_2000);
         totalTopup = findViewById(R.id.Totaltopup);
-        AppCompatButton confirmButtonTopup = findViewById(R.id.confirm_button_topup);
+        AppCompatButton confirmButtonTopup = findViewById(R.id.order_now_button);
 
 
         // Set button listeners using helper method
