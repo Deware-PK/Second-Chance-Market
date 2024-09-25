@@ -3,7 +3,6 @@ package com.github.dewarepk;
 import com.github.dewarepk.model.ItemData;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +40,10 @@ public final class TemporaryCache {
 
     public List<ItemData> getCarts() {
         return Collections.unmodifiableList(cart);
+    }
+
+    public void clearCarts() {
+        cart.clear();
     }
 
     public static TemporaryCache getInstance() {

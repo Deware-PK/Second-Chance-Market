@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.marsad.stylishdialogs.StylishAlertDialog;
 
+import java.text.DecimalFormat;
+
 public class ProfileActivity extends CustomActivity {
 
     private TextView balance;
@@ -42,6 +44,9 @@ public class ProfileActivity extends CustomActivity {
         AppCompatButton addressEditorButton = this.findViewById(R.id.address_button);
         AppCompatButton signOutButton = this.findViewById(R.id.sign_out_button);
         AppCompatButton profileButton = this.findViewById(R.id.my_profile_button);
+        AppCompatButton myStoreButton = this.findViewById(R.id.my_store_button);
+
+        DecimalFormat df = new DecimalFormat("#.##");
 
         TextView fullNameDisplay = this.findViewById(R.id.profile_name);
 
@@ -52,7 +57,7 @@ public class ProfileActivity extends CustomActivity {
         dialog = TimeUtil.loadDataDialog(this, balance.getText().toString().equals("฿ -1"), 1000);
 
         SimpleUtil.getCurrentUserBalance(this.getApplicationContext(), amount -> {
-            this.balance.setText("฿ " + amount);
+            this.balance.setText("฿ " + df.format(amount));
         });
 
         topupButton.setOnClickListener(l -> {
@@ -70,6 +75,10 @@ public class ProfileActivity extends CustomActivity {
             this.finish();
         });
 
+        myStoreButton.setOnClickListener(l -> {
+            this.startActivity(new Intent(ProfileActivity.this, MyStoreActivity.class));
+        });
+
         ImageView refresh = this.findViewById(R.id.refresh);
 
         refresh.setOnClickListener(aVoid -> {
@@ -77,7 +86,9 @@ public class ProfileActivity extends CustomActivity {
             this.balance.setText("฿ -1");
 
             SimpleUtil.getCurrentUserBalance(this.getApplicationContext(), amount -> {
-                this.balance.setText("฿ " + amount);
+
+
+                this.balance.setText("฿ " + df.format(amount));
 
             });
 

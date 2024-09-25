@@ -22,8 +22,10 @@
                 android:background="@drawable/top_homepage_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
 
                 <EditText
                     android:id="@+id/editTextTextsearch"
@@ -60,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                 <ImageView
-                    android:id="@+id/imagetshirt"
+                    android:id="@+id/image_tshirt"
                     android:layout_width="148dp"
                     android:layout_height="167dp"
                     android:layout_marginStart="26dp"
@@ -77,15 +79,15 @@
                     android:layout_gravity="center"
                     android:text="Cloths"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagetshirt"
-                    app:layout_constraintEnd_toEndOf="@+id/imagetshirt"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_tshirt"
+                    app:layout_constraintEnd_toEndOf="@+id/image_tshirt"
                     app:layout_constraintHorizontal_bias="0.485"
-                    app:layout_constraintStart_toStartOf="@+id/imagetshirt"
-                    app:layout_constraintTop_toTopOf="@+id/imagetshirt"
+                    app:layout_constraintStart_toStartOf="@+id/image_tshirt"
+                    app:layout_constraintTop_toTopOf="@+id/image_tshirt"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ImageView
-                    android:id="@+id/imagecomputer"
+                    android:id="@+id/image_computer"
                     android:layout_width="143dp"
                     android:layout_height="162dp"
                     android:layout_marginTop="20dp"
@@ -102,22 +104,23 @@
                     android:layout_gravity="center"
                     android:text="Digitals"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagecomputer"
-                    app:layout_constraintEnd_toEndOf="@+id/imagecomputer"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_computer"
+                    app:layout_constraintEnd_toEndOf="@+id/image_computer"
                     app:layout_constraintHorizontal_bias="0.494"
-                    app:layout_constraintStart_toStartOf="@+id/imagecomputer"
-                    app:layout_constraintTop_toTopOf="@+id/imagecomputer"
+                    app:layout_constraintStart_toStartOf="@+id/image_computer"
+                    app:layout_constraintTop_toTopOf="@+id/image_computer"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ImageView
-                    android:id="@+id/imagetools"
+                    android:id="@+id/image_tools"
                     android:layout_width="145dp"
                     android:layout_height="164dp"
-                    android:layout_marginStart="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="216dp"
                     android:background="@drawable/stork_button_topup"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/toolbox"
-                    tools:layout_editor_absoluteY="216dp"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
@@ -127,22 +130,23 @@
                     android:layout_gravity="center"
                     android:text="Tools"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagetools"
-                    app:layout_constraintEnd_toEndOf="@+id/imagetools"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_tools"
+                    app:layout_constraintEnd_toEndOf="@+id/image_tools"
                     app:layout_constraintHorizontal_bias="0.472"
-                    app:layout_constraintStart_toStartOf="@+id/imagetools"
-                    app:layout_constraintTop_toTopOf="@+id/imagetools"
+                    app:layout_constraintStart_toStartOf="@+id/image_tools"
+                    app:layout_constraintTop_toTopOf="@+id/image_tools"
                     app:layout_constraintVertical_bias="0.841" />
 
                 <ImageView
-                    android:id="@+id/imagefurniture"
+                    android:id="@+id/image_furniture"
                     android:layout_width="143dp"
                     android:layout_height="164dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="216dp"
+                    android:layout_marginEnd="36dp"
                     android:background="@drawable/stork_button_topup"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/furniture"
-                    tools:layout_editor_absoluteY="216dp"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
@@ -152,15 +156,15 @@
                     android:layout_gravity="center"
                     android:text="Furniture"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagefurniture"
-                    app:layout_constraintEnd_toEndOf="@+id/imagefurniture"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_furniture"
+                    app:layout_constraintEnd_toEndOf="@+id/image_furniture"
                     app:layout_constraintHorizontal_bias="0.476"
-                    app:layout_constraintStart_toStartOf="@+id/imagefurniture"
-                    app:layout_constraintTop_toTopOf="@+id/imagefurniture"
+                    app:layout_constraintStart_toStartOf="@+id/image_furniture"
+                    app:layout_constraintTop_toTopOf="@+id/image_furniture"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ImageView
-                    android:id="@+id/imagetoys"
+                    android:id="@+id/image_toys"
                     android:layout_width="140dp"
                     android:layout_height="163dp"
                     android:layout_marginStart="28dp"
@@ -168,7 +172,7 @@
                     android:background="@drawable/stork_button_topup"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imagetools"
+                    app:layout_constraintTop_toBottomOf="@+id/image_tools"
                     app:layout_constraintVertical_bias="0.947"
                     app:srcCompat="@drawable/storagebox" />
 
@@ -179,14 +183,14 @@
                     android:layout_gravity="center"
                     android:text="Toys"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagetoys"
-                    app:layout_constraintEnd_toEndOf="@+id/imagetoys"
-                    app:layout_constraintStart_toStartOf="@+id/imagetoys"
-                    app:layout_constraintTop_toTopOf="@+id/imagetoys"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_toys"
+                    app:layout_constraintEnd_toEndOf="@+id/image_toys"
+                    app:layout_constraintStart_toStartOf="@+id/image_toys"
+                    app:layout_constraintTop_toTopOf="@+id/image_toys"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ImageView
-                    android:id="@+id/imagemusic"
+                    android:id="@+id/image_music"
                     android:layout_width="139dp"
                     android:layout_height="165dp"
                     android:layout_marginEnd="36dp"
@@ -194,7 +198,7 @@
                     android:background="@drawable/stork_button_topup"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imagefurniture"
+                    app:layout_constraintTop_toBottomOf="@+id/image_furniture"
                     app:layout_constraintVertical_bias="0.941"
                     app:srcCompat="@drawable/music" />
 
@@ -205,113 +209,140 @@
                     android:layout_gravity="center"
                     android:text="Music Instrument"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imagemusic"
-                    app:layout_constraintEnd_toEndOf="@+id/imagemusic"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_music"
+                    app:layout_constraintEnd_toEndOf="@+id/image_music"
                     app:layout_constraintHorizontal_bias="0.461"
-                    app:layout_constraintStart_toStartOf="@+id/imagemusic"
-                    app:layout_constraintTop_toTopOf="@+id/imagemusic"
+                    app:layout_constraintStart_toStartOf="@+id/image_music"
+                    app:layout_constraintTop_toTopOf="@+id/image_music"
                     app:layout_constraintVertical_bias="1.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="15dp"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:targetApi="lollipop">
+
+                <LinearLayout
+                    android:id="@+id/homeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_homepage"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp">
+
+                    <ImageView
+                        android:id="@+id/homeImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/home_homepage">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/homeTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Home"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cartBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp">
+
+                    <ImageView
+                        android:id="@+id/cartImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/cart_homepage">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/CartTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Cart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/profileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp">
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/profile_homepage">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/profileTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Profile"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone">
+
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="410dp"
-        android:layout_height="70dp"
-        android:background="@drawable/round_back_purple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/me_btn"
-            android:layout_width="136dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_weight="0.2"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cart_btn"
-            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/profile_homepage" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Me"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/home_btn"
-            android:layout_width="132dp"
-            android:layout_height="66dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="0.2"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/home_homepage" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Home"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cart_btn"
-            android:layout_width="132dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="4dp"
-            android:layout_weight="0.2"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/me_btn"
-            app:layout_constraintStart_toEndOf="@+id/home_btn"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/cart_homepage" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Cart"
-                android:textAlignment="center"
-
-                android:textStyle="bold" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
