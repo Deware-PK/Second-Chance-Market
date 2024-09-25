@@ -1,5 +1,6 @@
 package com.github.dewarepk.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ItemData {
@@ -52,5 +53,18 @@ public class ItemData {
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemData itemData = (ItemData) o;
+        return Objects.equals(uuid, itemData.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(uuid);
     }
 }

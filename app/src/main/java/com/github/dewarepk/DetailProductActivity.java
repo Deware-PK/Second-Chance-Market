@@ -11,12 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.github.dewarepk.model.Address;
+import com.github.dewarepk.model.ItemData;
 import com.github.dewarepk.model.ItemPool;
+import com.github.dewarepk.model.SimpleCallback;
+import com.github.dewarepk.model.WalletHandler;
+import com.github.dewarepk.model.WalletMode;
+import com.github.dewarepk.util.SimpleUtil;
 import com.google.android.material.button.MaterialButton;
 import com.marsad.stylishdialogs.StylishAlertDialog;
 import com.squareup.picasso.Picasso;
@@ -39,8 +46,10 @@ public class DetailProductActivity extends AppCompatActivity {
         String productType = intent.getStringExtra("productType");
         String productDetails = intent.getStringExtra("productDetails");
         UUID productUuid = UUID.fromString(intent.getStringExtra("productUuid"));
+        ItemData rawItem = ItemPool.getInstance().getItemByUuid(productUuid);
 
         ImageView returnButton = this.findViewById(R.id.detail_return_button);
+        ImageView addCart = this.findViewById(R.id.add_order);
         TextView header = this.findViewById(R.id.product_header);
         ImageView showcase = this.findViewById(R.id.product_detail_display);
         TextView priceTag = this.findViewById(R.id.price_detail);
@@ -57,17 +66,39 @@ public class DetailProductActivity extends AppCompatActivity {
             this.finish();
         });
 
+        addCart.setOnClickListener(l -> {
+
+            if (TemporaryCache.getInstance().isContains(rawItem)) {
+                Toast.makeText(DetailProductActivity.this, "You already have this item in your cart.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            TemporaryCache.getInstance().addToCart(rawItem);
+            Toast.makeText(DetailProductActivity.this, "Added to cart!", Toast.LENGTH_SHORT).show();
+        });
+
         // Dialog
         AppCompatButton buyNowButton = this.findViewById(R.id.buy_btn);
 
 
         buyNowButton.setOnClickListener(aVoid -> {
 
-            showConfirmationDialog(productUuid);
+            SimpleUtil.getCurrentUserBalance(DetailProductActivity.this.getApplicationContext(), result -> {
+                if (result < productPrice) {
+                    new StylishAlertDialog(this, StylishAlertDialog.ERROR)
+                            .setTitleText("Oops...")
+                            .setContentText("You don't have enough fund.!")
+                            .show();
+                } else {
+                    showConfirmationDialog(productUuid , productPrice);
+                }
+
+            });
         });
     }
 
-    private void showConfirmationDialog(UUID productUuid) {
+
+    private void showConfirmationDialog(UUID productUuid, double price) {
 
 
         StylishAlertDialog dialog = new StylishAlertDialog(this, StylishAlertDialog.WARNING)
@@ -77,12 +108,32 @@ public class DetailProductActivity extends AppCompatActivity {
                 .setConfirmClickListener(new StylishAlertDialog.OnStylishClickListener() {
                     @Override
                     public void onClick(StylishAlertDialog sDialog) {
-                        sDialog.dismissWithAnimation();
 
-                        // Execute code after confirmation
-                        startActivity(new Intent(DetailProductActivity.this, HomePageActivity.class));
-                        finish();
-                        ItemPool.getInstance().deleteItem(productUuid);
+                        SimpleUtil.getCurrentUserAddress(DetailProductActivity.this, new SimpleCallback<Address>() {
+                            @Override
+                            public void onDataReceived(Address result) {
+                                if (result.getAddress().isEmpty()
+                                        || result.getDistrict().isEmpty()
+                                        || result.getPhoneNumber().isEmpty()
+                                        || result.getPostalCode().isEmpty()
+                                        || result.getProvince().isEmpty()
+                                        || result.getSubDistrict().isEmpty()) {
+                                    Toast.makeText(DetailProductActivity.this, "Please set your address first.", Toast.LENGTH_SHORT).show();
+                                    sDialog.dismissWithAnimation();
+                                } else {
+
+                                    WalletHandler wallet = new WalletHandler();
+
+                                    wallet.updateBalance(SimpleUtil.getCurrentUserId(DetailProductActivity.this.getApplicationContext()), price, WalletMode.WITHDRAW);
+
+                                    sDialog.dismissWithAnimation();
+                                    startActivity(new Intent(DetailProductActivity.this, HomePageActivity.class));
+                                    finish();
+                                    ItemPool.getInstance().deleteItem(productUuid);
+                                }
+                            }
+                        });
+
                     }
                 })
                 .setCancelButton("Cancel", new StylishAlertDialog.OnStylishClickListener() {

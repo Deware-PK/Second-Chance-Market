@@ -11,7 +11,6 @@
         android:id="@+id/return_back_my_cart"
         android:layout_width="59dp"
         android:layout_height="41dp"
-        android:onClick="onImageClick"
         android:src="@drawable/return_left"
         android:contentDescription="NULL"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/my_cart">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_view_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -112,10 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="24dp"
-                android:text="0 ฿"
+                android:text="36.00 ฿"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView20"
+                app:layout_constraintBottom_toTopOf="@+id/total_sum"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <View
@@ -138,13 +138,13 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textView20"
+                app:layout_constraintBottom_toBottomOf="@+id/total_sum"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView20"
+                app:layout_constraintTop_toTopOf="@+id/total_sum"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/total_sum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
@@ -185,7 +185,7 @@
         android:layout_marginBottom="79dp"
         android:background="@drawable/stroke_my_cart_box"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/confirm_button_topup"
+        app:layout_constraintBottom_toTopOf="@+id/order_now_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -223,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
-                android:text="Thai-Nichi"
+                android:text="Click to see details"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -231,7 +231,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/location_go_next_img"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
@@ -283,7 +283,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="Walcome21"
+                android:text="You don't have any coupon"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -293,7 +293,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/confirm_button_topup"
+        android:id="@+id/order_now_button"
         android:layout_width="321dp"
         android:layout_height="71dp"
         android:layout_marginBottom="80dp"

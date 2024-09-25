@@ -71,6 +71,10 @@ public final class SimpleUtil {
 
     }
 
+    public static void getUsername(Context context, SimpleCallback<String> callback) {
+        database.getSpecificData(getCurrentUserId(context), "username").thenAccept(value -> callback.onDataReceived((String) value));
+    }
+
     /**
      * Check if user's email is verified.
      *
