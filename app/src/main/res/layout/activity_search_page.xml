@@ -1,86 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchPageActivity">
+    tools:context=".HomePageActivity">
 
 
-    <EditText
-        android:id="@+id/search_bar_page"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="52dp"
-        android:background="@drawable/stroke_searchbar_page"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:hint="Search . . ."
-        android:inputType="text"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/detail_return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:padding="8dp"
-        android:src="@drawable/return_left"
-        app:layout_constraintBottom_toTopOf="@+id/search_bar_page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toEndOf="@+id/search_bar_page"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095"
-        app:srcCompat="@drawable/search_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/top_homepage_bg"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp">
+
+
+                    <ImageView
+                        android:id="@+id/detail_return_button"
+                        android:layout_width="43dp"
+                        android:layout_height="39dp"
+                        android:layout_marginTop="8dp"
+                        android:padding="8dp"
+                        android:src="@drawable/return_left"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.553" />
+
+                    <ImageView
+                        android:id="@+id/notification_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/notifications_ic" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="32dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/stroke_search_bar"
+                    android:drawableStart="@drawable/search_icon"
+                    android:drawablePadding="8dp"
+                    android:ems="10"
+                    android:hint="Search . . ."
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="#9aa2aa"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Searching of '___'"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/view_holder"
+                android:layout_width="match_parent"
+                android:layout_height="475dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:nestedScrollingEnabled="false" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/purple"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:elevation="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="15dp"
-        android:weightSum="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/purple"
+        android:layout_alignParentBottom="true"
         tools:targetApi="lollipop">
 
         <LinearLayout
-            android:id="@+id/homeBtn_search_page"
+            android:id="@+id/homeBtn"
+            android:background="@drawable/round_back_homepage"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_back_homepage"
-            android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="5dp"
-            android:paddingEnd="5dp">
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/homeImage"
@@ -90,30 +155,28 @@
                 android:src="@drawable/home_homepage">
 
             </ImageView>
-
             <TextView
                 android:id="@+id/homeTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="Home"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:layout_marginStart="10dp"
+                android:textSize="16sp">
 
             </TextView>
         </LinearLayout>
-
         <LinearLayout
-            android:id="@+id/cartBtn_search_page"
+            android:id="@+id/cartBtn"
+            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="5dp"
-            android:paddingEnd="5dp">
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/cartImage"
@@ -123,31 +186,29 @@
                 android:src="@drawable/cart_homepage">
 
             </ImageView>
-
             <TextView
                 android:id="@+id/CartTxt"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="Cart"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                android:visibility="gone">
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp">
 
             </TextView>
         </LinearLayout>
-
         <LinearLayout
-            android:id="@+id/profileBtn_search_page"
+            android:id="@+id/profileBtn"
+            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="5dp"
-            android:paddingEnd="5dp">
+            android:paddingEnd="5dp"
+            android:gravity="center"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/profileImage"
@@ -157,21 +218,20 @@
                 android:src="@drawable/profile_homepage">
 
             </ImageView>
-
             <TextView
                 android:id="@+id/profileTxt"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="Profile"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                android:visibility="gone">
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp">
 
             </TextView>
         </LinearLayout>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
