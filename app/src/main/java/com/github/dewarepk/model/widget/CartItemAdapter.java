@@ -1,6 +1,7 @@
 package com.github.dewarepk.model.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.dewarepk.OrderTrackingActivity;
 import com.github.dewarepk.R;
 import com.github.dewarepk.TemporaryCache;
+import com.github.dewarepk.model.CartAdapterMode;
 import com.github.dewarepk.model.ItemData;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +24,18 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ItemVi
 
     private final ArrayList<ItemData> items;
     private final Context context;
+    private final CartAdapterMode mode;
 
     public CartItemAdapter(Context context, ArrayList<ItemData> items) {
         this.items = items;
         this.context = context;
+        this.mode = CartAdapterMode.HOLDING;
+    }
+
+    public CartItemAdapter(Context context, ArrayList<ItemData> items, CartAdapterMode mode) {
+        this.items = items;
+        this.context = context;
+        this.mode = mode;
     }
 
     @NonNull
@@ -47,11 +58,29 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ItemVi
                 .placeholder(R.drawable.shirt_holder)
                 .into(holder.imageView);
 
-        holder.deleteIcon.setOnClickListener(aVoid -> {
-            TemporaryCache.getInstance().deleteItem(currentItem);
-            items.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, items.size());
+        holder.deleteIcon.setVisibility(View.INVISIBLE);
+        holder.deleteIcon.setActivated(false);
+
+        if (mode == CartAdapterMode.HOLDING) {
+            holder.deleteIcon.setVisibility(View.VISIBLE);
+            holder.deleteIcon.setActivated(true);
+            holder.deleteIcon.setOnClickListener(aVoid -> {
+                TemporaryCache.getInstance().deleteItem(currentItem);
+                items.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, items.size());
+            });
+        } else {
+            bindClickEvent(holder.imageView);
+            bindClickEvent(holder.titleTxt);
+        }
+
+    }
+
+    private <T extends View> void bindClickEvent(T item) {
+        item.setOnClickListener(aVoid -> {
+            Intent nextIntent = new Intent(context, OrderTrackingActivity.class);
+            context.startActivity(nextIntent);
         });
     }
 
@@ -74,5 +103,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ItemVi
             deleteIcon = itemView.findViewById(R.id.delete_icon);
         }
     }
+
+
 
 }

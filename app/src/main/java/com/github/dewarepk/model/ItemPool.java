@@ -1,5 +1,9 @@
 package com.github.dewarepk.model;
 
+import android.util.Log;
+
+import com.github.dewarepk.TemporaryCache;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,9 +28,13 @@ public final class ItemPool {
         items.add(item);
     }
 
-    public void deleteItem(UUID uuid) {
+    public void deleteItem(UUID uuid , boolean isPermanent) {
         for (ItemData item : items) {
             if (item.getUuid().equals(uuid)) {
+                if (isPermanent) {
+                    TemporaryCache.getInstance().addBoughtList(item);
+                }
+
                 items.remove(item);
                 return;
             }
@@ -49,6 +57,18 @@ public final class ItemPool {
                 return item;
 
         return null;
+    }
+
+    public List<ItemData> getItemsByKeyword(String keyword) {
+        List<ItemData> byKeyword = new ArrayList<>();
+
+        for (ItemData item : this.items) {
+            if (item.getHeader().toLowerCase().contains(keyword.toLowerCase())) {
+                byKeyword.add(item);
+            }
+        }
+
+        return byKeyword;
     }
 
     public List<ItemData> getItemByType(ItemType type) {

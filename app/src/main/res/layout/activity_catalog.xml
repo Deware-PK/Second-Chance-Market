@@ -10,92 +10,164 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_homepage_bg"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp">
+
+                <TextView
+                    android:id="@+id/fullname_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Peter Parker"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/notification_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/notifications_ic" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/stroke_search_bar"
+                android:drawableStart="@drawable/search_icon"
+                android:drawablePadding="8dp"
+                android:ems="10"
+                android:hint="Search . . ."
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#9aa2aa"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="414dp"
-                android:layout_height="156dp"
-                android:layout_marginBottom="736dp"
-                android:background="@drawable/top_homepage_bg"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="400dp"
+                android:layout_height="654dp"
+                android:layout_marginEnd="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintHorizontal_bias="0.625"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.0">
 
-                <EditText
-                    android:id="@+id/editTextTextsearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="24dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="53dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="82dp"
-                    android:background="@drawable/stroke_search_bar"
-                    android:drawableStart="@drawable/search_icon"
-                    android:drawablePadding="8dp"
-                    android:ems="10"
-                    android:hint="Search . . ."
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="#9aa2aa"
-                    android:textSize="18sp"
+                <ImageView
+                    android:id="@+id/image_computer"
+                    android:layout_width="143dp"
+                    android:layout_height="162dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/stork_button_topup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/responsive" />
+
+                <ImageView
+                    android:id="@+id/image_music"
+                    android:layout_width="139dp"
+                    android:layout_height="165dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="88dp"
+                    android:background="@drawable/stork_button_topup"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_furniture"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/music" />
+
+                <ImageView
+                    android:id="@+id/image_furniture"
+                    android:layout_width="143dp"
+                    android:layout_height="164dp"
+                    android:layout_marginTop="220dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/stork_button_topup"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/furniture"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageView
+                    android:id="@+id/image_tools"
+                    android:layout_width="145dp"
+                    android:layout_height="164dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="220dp"
+                    android:background="@drawable/stork_button_topup"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/toolbox"
+                    tools:ignore="MissingConstraints" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="412dp"
-                android:layout_height="660dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="3dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                <ImageView
+                    android:id="@+id/image_toys"
+                    android:layout_width="140dp"
+                    android:layout_height="163dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="88dp"
+                    android:background="@drawable/stork_button_topup"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_tools"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/storagebox" />
 
                 <ImageView
                     android:id="@+id/image_tshirt"
                     android:layout_width="148dp"
                     android:layout_height="167dp"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="36dp"
                     android:background="@drawable/stork_button_topup"
                     android:src="@drawable/tshirt"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textcloths"
+                    android:id="@+id/text_clothe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Cloths"
+                    android:text="Clothes"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/image_tshirt"
                     app:layout_constraintEnd_toEndOf="@+id/image_tshirt"
-                    app:layout_constraintHorizontal_bias="0.485"
+                    app:layout_constraintHorizontal_bias="0.515"
                     app:layout_constraintStart_toStartOf="@+id/image_tshirt"
                     app:layout_constraintTop_toTopOf="@+id/image_tshirt"
                     app:layout_constraintVertical_bias="1.0" />
-
-                <ImageView
-                    android:id="@+id/image_computer"
-                    android:layout_width="143dp"
-                    android:layout_height="162dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="37dp"
-                    android:background="@drawable/stork_button_topup"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/responsive" />
 
                 <TextView
                     android:id="@+id/textdigitals"
@@ -111,18 +183,6 @@
                     app:layout_constraintTop_toTopOf="@+id/image_computer"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <ImageView
-                    android:id="@+id/image_tools"
-                    android:layout_width="145dp"
-                    android:layout_height="164dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="216dp"
-                    android:background="@drawable/stork_button_topup"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/toolbox"
-                    tools:ignore="MissingConstraints" />
-
                 <TextView
                     android:id="@+id/textTools"
                     android:layout_width="wrap_content"
@@ -132,22 +192,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/image_tools"
                     app:layout_constraintEnd_toEndOf="@+id/image_tools"
-                    app:layout_constraintHorizontal_bias="0.472"
+                    app:layout_constraintHorizontal_bias="0.463"
                     app:layout_constraintStart_toStartOf="@+id/image_tools"
                     app:layout_constraintTop_toTopOf="@+id/image_tools"
-                    app:layout_constraintVertical_bias="0.841" />
-
-                <ImageView
-                    android:id="@+id/image_furniture"
-                    android:layout_width="143dp"
-                    android:layout_height="164dp"
-                    android:layout_marginTop="216dp"
-                    android:layout_marginEnd="36dp"
-                    android:background="@drawable/stork_button_topup"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/furniture"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/textFurniture"
@@ -163,19 +211,6 @@
                     app:layout_constraintTop_toTopOf="@+id/image_furniture"
                     app:layout_constraintVertical_bias="1.0" />
 
-                <ImageView
-                    android:id="@+id/image_toys"
-                    android:layout_width="140dp"
-                    android:layout_height="163dp"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginBottom="88dp"
-                    android:background="@drawable/stork_button_topup"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_tools"
-                    app:layout_constraintVertical_bias="0.947"
-                    app:srcCompat="@drawable/storagebox" />
-
                 <TextView
                     android:id="@+id/textToys"
                     android:layout_width="wrap_content"
@@ -188,19 +223,6 @@
                     app:layout_constraintStart_toStartOf="@+id/image_toys"
                     app:layout_constraintTop_toTopOf="@+id/image_toys"
                     app:layout_constraintVertical_bias="1.0" />
-
-                <ImageView
-                    android:id="@+id/image_music"
-                    android:layout_width="139dp"
-                    android:layout_height="165dp"
-                    android:layout_marginEnd="36dp"
-                    android:layout_marginBottom="88dp"
-                    android:background="@drawable/stork_button_topup"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_furniture"
-                    app:layout_constraintVertical_bias="0.941"
-                    app:srcCompat="@drawable/music" />
 
                 <TextView
                     android:id="@+id/textmusic_Instrument"
@@ -219,6 +241,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

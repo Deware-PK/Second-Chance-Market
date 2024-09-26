@@ -29,6 +29,7 @@ public class HomePageActivity extends CustomActivity {
 
         this.setDefaultTab(1);
         this.makeNavigationBar();
+        this.makeSearchBar(R.id.search_bar);
 
         /** Properties **/
         ImageView clothesButton = this.findViewById(R.id.clothes_btn);
@@ -45,7 +46,6 @@ public class HomePageActivity extends CustomActivity {
         this.catalogClickEvent(digitalButton, "DIGITAL");
         this.catalogClickEvent(toolButton, "TOOL");
         this.catalogClickEvent(furnitureButton, "FURNITURE");
-        //this.catalogClickEvent(moreButton, "CUSTOMIZE");
 
         moreButton.setOnClickListener(l -> {
             this.startActivity(new Intent(this, CategoriesActivity.class));

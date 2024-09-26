@@ -27,8 +27,12 @@ public class CategoriesActivity extends CustomActivity {
 
         ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
 
+        this.makeSearchBar(R.id.search_bar);
         this.setDefaultTab(1);
         this.makeNavigationBar();
+
+        TextView fullNameDisplay = this.findViewById(R.id.fullname_display);
+        SimpleUtil.getUserFullName(this.getApplicationContext(), fullNameDisplay::setText);
 
         /** Properties **/
         ImageView clothesButton = this.findViewById(R.id.image_tshirt);
