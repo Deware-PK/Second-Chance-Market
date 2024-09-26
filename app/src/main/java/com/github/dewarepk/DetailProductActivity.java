@@ -80,7 +80,6 @@ public class DetailProductActivity extends AppCompatActivity {
         // Dialog
         AppCompatButton buyNowButton = this.findViewById(R.id.buy_btn);
 
-
         buyNowButton.setOnClickListener(aVoid -> {
 
             SimpleUtil.getCurrentUserBalance(DetailProductActivity.this.getApplicationContext(), result -> {
@@ -129,7 +128,9 @@ public class DetailProductActivity extends AppCompatActivity {
                                     sDialog.dismissWithAnimation();
                                     startActivity(new Intent(DetailProductActivity.this, HomePageActivity.class));
                                     finish();
-                                    ItemPool.getInstance().deleteItem(productUuid);
+                                    TemporaryCache.getInstance().deleteItem(ItemPool.getInstance().getItemByUuid(productUuid));
+                                    ItemPool.getInstance().deleteItem(productUuid, true);
+                                    TemporaryCache.getInstance().deleteItem(ItemPool.getInstance().getItemByUuid(productUuid));
                                 }
                             }
                         });

@@ -1,12 +1,15 @@
 package com.github.dewarepk.model.widget;
 
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +17,7 @@ import com.github.dewarepk.HomePageActivity;
 import com.github.dewarepk.MyCartActivity;
 import com.github.dewarepk.ProfileActivity;
 import com.github.dewarepk.R;
+import com.github.dewarepk.SearchPageActivity;
 
 public abstract class CustomActivity extends AppCompatActivity {
 
@@ -21,6 +25,25 @@ public abstract class CustomActivity extends AppCompatActivity {
 
     public void setDefaultTab(int selectedTab) {
         this.selectedTab = selectedTab;
+    }
+
+    public void makeSearchBar(int searchBarId) {
+        EditText searchBar = this.findViewById(searchBarId);
+        //searchBar.setFocusableInTouchMode(true);
+        //searchBar.requestFocus();
+        searchBar.setOnKeyListener((v, keyCode, event) -> {
+
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                Intent intent = new Intent(this, SearchPageActivity.class);
+                intent.putExtra("type" , "CUSTOMIZE");
+                intent.putExtra("keyword" , searchBar.getText().toString());
+                this.startActivity(intent);
+                this.finish();
+                return true;
+            }
+            return false;
+        });
     }
 
     public void makeNavigationBar() {

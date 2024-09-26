@@ -45,6 +45,7 @@ public class ProfileActivity extends CustomActivity {
         AppCompatButton signOutButton = this.findViewById(R.id.sign_out_button);
         AppCompatButton profileButton = this.findViewById(R.id.my_profile_button);
         AppCompatButton myStoreButton = this.findViewById(R.id.my_store_button);
+        AppCompatButton myOrderButton = this.findViewById(R.id.my_order_button);
 
         DecimalFormat df = new DecimalFormat("#.##");
 
@@ -58,6 +59,11 @@ public class ProfileActivity extends CustomActivity {
 
         SimpleUtil.getCurrentUserBalance(this.getApplicationContext(), amount -> {
             this.balance.setText("฿ " + df.format(amount));
+        });
+
+        myOrderButton.setOnClickListener(l -> {
+            this.startActivity(new Intent(ProfileActivity.this , OrderListActivity.class));
+            this.finish();
         });
 
         topupButton.setOnClickListener(l -> {

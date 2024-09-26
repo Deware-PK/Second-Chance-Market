@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.dewarepk.DetailProductActivity;
 import com.github.dewarepk.R;
+import com.github.dewarepk.model.CartAdapterMode;
 import com.github.dewarepk.model.ItemData;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +23,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private final ArrayList<ItemData> items;
     private final Context context;
+
 
     public ItemAdapter(Context context, ArrayList<ItemData> items) {
         this.items = items;

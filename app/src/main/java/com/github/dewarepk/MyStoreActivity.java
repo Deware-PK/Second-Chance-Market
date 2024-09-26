@@ -5,9 +5,6 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MyStoreActivity extends AppCompatActivity {
 
@@ -17,7 +14,7 @@ public class MyStoreActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_store);
 
-        this.findViewById(R.id.return_back_my_store).setOnClickListener(aVoid -> {
+        this.findViewById(R.id.return_back_my_profile).setOnClickListener(aVoid -> {
             this.startActivity(new Intent(MyStoreActivity.this , ProfileActivity.class));
             this.finish();
         });

@@ -107,11 +107,17 @@ public class MyCartActivity extends AppCompatActivity {
                                     wallet.updateBalance(SimpleUtil.getCurrentUserId(MyCartActivity.this.getApplicationContext()), price, WalletMode.WITHDRAW);
 
                                     sDialog.dismissWithAnimation();
+
+                                    // Fix here
+                                    for (int i = 0; i < products.size(); i++) {
+                                        TemporaryCache.getInstance().addBoughtList(products.get(i));
+                                        ItemPool.getInstance().deleteItem(products.get(i).getUuid(), true);
+
+                                    }
+
+
                                     startActivity(new Intent(MyCartActivity.this, HomePageActivity.class));
                                     finish();
-
-                                    for (ItemData item : products)
-                                        ItemPool.getInstance().deleteItem(item.getUuid());
 
                                     TemporaryCache.getInstance().clearCarts();
                                 }
