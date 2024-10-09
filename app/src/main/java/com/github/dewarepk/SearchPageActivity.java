@@ -25,7 +25,6 @@ public class SearchPageActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search_page);
 
         Intent intent = this.getIntent();

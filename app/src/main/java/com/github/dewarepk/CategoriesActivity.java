@@ -22,7 +22,6 @@ public class CategoriesActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_catalog);
 
         ValidateUtil.checkIntegrity(this.getApplicationContext(), this);

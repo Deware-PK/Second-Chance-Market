@@ -317,7 +317,7 @@
         android:paddingEnd="16dp"
         android:gravity="center_vertical"
 
-        app:layout_constraintBottom_toTopOf="@+id/sign_out_button"
+        app:layout_constraintBottom_toTopOf="@+id/report"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_order_button">
@@ -345,6 +345,25 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/report"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableStart="@drawable/report"
+        android:orientation="horizontal"
+        android:text="Report"
+        android:paddingStart="16dp"
+        android:drawablePadding="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center_vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_button">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sign_out_button"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
@@ -360,7 +379,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_button">
+        app:layout_constraintTop_toBottomOf="@+id/report">
 
     </androidx.appcompat.widget.AppCompatButton>
 

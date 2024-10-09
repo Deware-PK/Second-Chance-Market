@@ -22,7 +22,6 @@ public class HomePageActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_page);
 
         ValidateUtil.checkIntegrity(this.getApplicationContext(), this);
