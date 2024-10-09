@@ -22,14 +22,14 @@ import com.github.dewarepk.model.widget.CartItemAdapter;
 import com.github.dewarepk.util.SimpleUtil;
 import com.marsad.stylishdialogs.StylishAlertDialog;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class MyCartActivity extends AppCompatActivity {
+
+    public static final double DELIVERY_FEE = 36.0D;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +55,38 @@ public class MyCartActivity extends AppCompatActivity {
 
         DecimalFormat df = new DecimalFormat("#.##");
         subTotal.setText(df.format(TemporaryCache.getInstance().getPriceTotal()) + " ฿");
-        double total = Double.parseDouble(df.format(TemporaryCache.getInstance().getPriceTotal() + 36));
-        totalSum.setText(df.format(total) + " ฿");
+        AtomicReference<Double> total = new AtomicReference<>(Double.parseDouble(df.format(TemporaryCache.getInstance().getPriceTotal() + DELIVERY_FEE)));
+        totalSum.setText(df.format(total.get()) + " ฿");
 
         orderButton.setOnClickListener(aVoid -> {
+            if (total.get() - DELIVERY_FEE <= 0) {
+                Toast.makeText(this, "Your cart is empty. Cannot be processed.", Toast.LENGTH_LONG).show();
+                return;
+            }
             SimpleUtil.getCurrentUserBalance(MyCartActivity.this.getApplicationContext(), result -> {
-                if (result < total) {
+                if (result < total.get()) {
                     new StylishAlertDialog(this, StylishAlertDialog.ERROR)
                             .setTitleText("Oops...")
                             .setContentText("You don't have enough fund.!")
                             .show();
                 } else {
-                    showConfirmationDialog(TemporaryCache.getInstance().getCarts() , total);
+                    showConfirmationDialog(TemporaryCache.getInstance().getCarts() , total.get());
                 }
 
             });
         });
 
+        CartItemAdapter cartItemAdapter = new CartItemAdapter(this, SimpleUtil.convertListToArrayList(TemporaryCache.getInstance().getCarts()));
         RecyclerView recyclerView = this.findViewById(R.id.recycle_view_cart);
-        recyclerView.setAdapter(new CartItemAdapter(this, SimpleUtil.convertListToArrayList(TemporaryCache.getInstance().getCarts())));
+        recyclerView.setAdapter(cartItemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        cartItemAdapter.callDeleteEvent((item, pos) -> {
+            subTotal.setText(df.format(TemporaryCache.getInstance().getPriceTotal()) + " ฿");
+            total.set(Double.parseDouble(df.format(TemporaryCache.getInstance().getPriceTotal() + 36)));
+            totalSum.setText(total.get() + " ฿");
+        });
+
     }
 
 
@@ -114,7 +126,6 @@ public class MyCartActivity extends AppCompatActivity {
                                         ItemPool.getInstance().deleteItem(products.get(i).getUuid(), true);
 
                                     }
-
 
                                     startActivity(new Intent(MyCartActivity.this, HomePageActivity.class));
                                     finish();

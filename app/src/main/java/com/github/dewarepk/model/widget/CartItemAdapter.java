@@ -19,12 +19,14 @@ import com.github.dewarepk.model.ItemData;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.function.BiConsumer;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ItemViewHolder> {
 
     private final ArrayList<ItemData> items;
     private final Context context;
     private final CartAdapterMode mode;
+    private IEvent event;
 
     public CartItemAdapter(Context context, ArrayList<ItemData> items) {
         this.items = items;
@@ -69,12 +71,24 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ItemVi
                 items.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, items.size());
+                if (event != null) {
+                    event.onDelete(currentItem, position);
+                }
             });
         } else {
             bindClickEvent(holder.imageView);
             bindClickEvent(holder.titleTxt);
         }
 
+    }
+
+    public void callDeleteEvent(IEvent event) {
+        this.event = event;
+    }
+
+    public interface IEvent {
+
+        void onDelete(ItemData item, int position);
     }
 
     private <T extends View> void bindClickEvent(T item) {
