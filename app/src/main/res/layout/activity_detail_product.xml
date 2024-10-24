@@ -9,12 +9,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -26,10 +28,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="8dp"
                     android:src="@drawable/return_left"
-                    android:padding="8dp" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <View
                     android:id="@+id/view_product_detail"
@@ -55,6 +57,19 @@
                     app:layout_constraintTop_toTopOf="@+id/view_product_detail"
                     app:layout_constraintVertical_bias="0.437" />
 
+                <TextView
+                    android:id="@+id/product_uuid"
+                    android:layout_width="64dp"
+                    android:layout_height="19dp"
+                    android:layout_marginBottom="45dp"
+                    android:text="ID: 29675"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.953"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.107" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -66,22 +81,22 @@
                     android:id="@+id/product_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:text="Title"
                     android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Title"
+                    android:textColor="@color/black"
                     android:textSize="23sp"
-                    android:textColor="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/price_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$ 0"
                     android:layout_marginEnd="26dp"
+                    android:text="$ 0"
                     android:textColor="@color/black"
                     android:textSize="23sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,8 +107,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="26dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="26dp"
                     android:background="@color/black" />
 
@@ -103,11 +118,11 @@
                 android:id="@+id/details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="26dp"
-                android:textSize="14sp"/>
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buy_btn"
@@ -115,13 +130,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="160dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/round_back_purple_15"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:text="Buy Now"
                 android:textColor="@color/white"
-                android:text="Buy Now">
+                android:textSize="24sp"
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatButton>
 
@@ -132,13 +147,14 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="-50dp"
                 app:srcCompat="@drawable/cart" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:textSize="12sp"
-                android:text="Add to cart"/>
+                android:text="Add to cart"
+                android:textSize="12sp" />
         </LinearLayout>
     </ScrollView>
 

@@ -28,6 +28,7 @@ import com.google.android.material.button.MaterialButton;
 import com.marsad.stylishdialogs.StylishAlertDialog;
 import com.squareup.picasso.Picasso;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class DetailProductActivity extends AppCompatActivity {
@@ -54,6 +55,10 @@ public class DetailProductActivity extends AppCompatActivity {
         ImageView showcase = this.findViewById(R.id.product_detail_display);
         TextView priceTag = this.findViewById(R.id.price_detail);
         TextView details = this.findViewById(R.id.details);
+        TextView productId = this.findViewById(R.id.product_uuid);
+
+        Random random = new Random();
+        productId.setText("ID: " + (10000 + random.nextInt(99999 - 10000 + 1)));
 
         header.setText(productHeader);
         Picasso.get()

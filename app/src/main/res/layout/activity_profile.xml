@@ -350,12 +350,12 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:drawableStart="@drawable/report"
-        android:orientation="horizontal"
-        android:text="Report"
-        android:paddingStart="16dp"
         android:drawablePadding="16dp"
-        android:paddingEnd="16dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Report"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -387,19 +387,18 @@
         android:id="@+id/my_store_button"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="495dp"
         android:background="@color/white"
         android:drawableStart="@drawable/store_icon"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="16dp"
-        android:drawablePadding="16dp"
         android:paddingEnd="16dp"
-        android:gravity="center_vertical"
         android:text="My store"
         app:layout_constraintBottom_toTopOf="@+id/my_order_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout">
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_button">
 
     </androidx.appcompat.widget.AppCompatButton>
 

@@ -37,7 +37,7 @@ public class MyCartActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_my_cart);
 
-        ImageView returnBack = this.findViewById(R.id.return_back_my_cart);
+        ImageView returnBack = this.findViewById(R.id.return_back_my_profile);
         ImageView goNextAddress = this.findViewById(R.id.location_go_next_img);
         TextView subTotal = this.findViewById(R.id.subtotal_cost);
         TextView totalSum = this.findViewById(R.id.total_sum);

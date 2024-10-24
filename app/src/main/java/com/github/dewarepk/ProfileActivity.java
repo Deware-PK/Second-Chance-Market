@@ -45,6 +45,7 @@ public class ProfileActivity extends CustomActivity {
         AppCompatButton profileButton = this.findViewById(R.id.my_profile_button);
         AppCompatButton myStoreButton = this.findViewById(R.id.my_store_button);
         AppCompatButton myOrderButton = this.findViewById(R.id.my_order_button);
+        AppCompatButton reportButton = this.findViewById(R.id.report);
 
         DecimalFormat df = new DecimalFormat("#.##");
 
@@ -82,6 +83,17 @@ public class ProfileActivity extends CustomActivity {
 
         myStoreButton.setOnClickListener(l -> {
             this.startActivity(new Intent(ProfileActivity.this, MyStoreActivity.class));
+            this.finish();
+        });
+
+        myStoreButton.setOnClickListener(l -> {
+            this.startActivity(new Intent(ProfileActivity.this, MyStoreActivity.class));
+            this.finish();
+        });
+
+        reportButton.setOnClickListener(l -> {
+            this.startActivity(new Intent(ProfileActivity.this, ReportActivity.class));
+            this.finish();
         });
 
         ImageView refresh = this.findViewById(R.id.refresh);
