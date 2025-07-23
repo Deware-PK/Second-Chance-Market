@@ -45,7 +45,7 @@ The app supports essential e-commerce features such as product browsing, cart ma
 
 | Login | Sign Up | Email Verification |
 |-------|---------|--------------------|
-| ![Login](screenshots/login.png) | ![Verify Email](screenshots/email_verification.png) |
+| ![Login](screenshots/login.png) | ![sign_up](screenshots/sign_up.png) | ![Verify Email](screenshots/email_verification.png) |
 
 | Category Page | My Cart | Profile |
 |---------------|---------|---------|
